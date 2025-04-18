@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EatTogether - Notifications</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Notifications</h1>
+            <a href="#" class="text-primary">Mark All as Read</a>
+        </div>
+
+        <div class="content-container">
+            <!-- Notification Item 1 - Match Found -->
+            <div class="card">
+                <div class="notification-item">
+                    <div class="notification-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-title">New Match Found!</div>
+                        <div class="notification-message">
+                            We've found a match for your dinner availability this Friday at 7:30 PM.
+                        </div>
+                        <div class="notification-time">15 min ago</div>
+                    </div>
+                    <div class="notification-unread"></div>
+                </div>
+
+                <div class="match-details p-20">
+                    <div class="match-details-item">
+                        <div class="match-details-icon">
+                            <i class="fas fa-calendar"></i>
+                        </div>
+                        <div class="match-details-text">
+                            Friday, Oct 15 at 7:30 PM
+                        </div>
+                    </div>
+                    <div class="match-details-item">
+                        <div class="match-details-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="match-details-text">
+                            Trattoria Italiana, 0.8 mi away
+                        </div>
+                    </div>
+                    <div class="match-details-item">
+                        <div class="match-details-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="match-details-text">
+                            You'll meet with 4 others
+                        </div>
+                    </div>
+
+                    <div class="avatar-group mt-10">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" class="avatar">
+                        <img src="https://randomuser.me/api/portraits/women/85.jpg" alt="User" class="avatar">
+                        <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="User" class="avatar">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User" class="avatar">
+                    </div>
+
+                    <div class="action-buttons mt-20">
+                        <div class="action-btn action-btn-accept">
+                            <i class="fas fa-check"></i> Accept
+                        </div>
+                        <div class="action-btn action-btn-decline">
+                            <i class="fas fa-times"></i> Decline
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notification Item 2 - Message -->
+            <div class="card">
+                <div class="notification-item">
+                    <div class="notification-icon">
+                        <i class="fas fa-comment"></i>
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-title">New Message</div>
+                        <div class="notification-message">
+                            Alex sent you a message about your upcoming dinner.
+                        </div>
+                        <div class="notification-time">1 hour ago</div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-outline">View Message</button>
+                </div>
+            </div>
+
+            <!-- Notification Item 3 - Meal Request -->
+            <div class="card">
+                <div class="notification-item">
+                    <div class="notification-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-title">Meal Request</div>
+                        <div class="notification-message">
+                            Sarah wants to join your lunch at Sakura Sushi on Thursday.
+                        </div>
+                        <div class="notification-time">Yesterday</div>
+                    </div>
+                    <div class="notification-unread"></div>
+                </div>
+                <div class="p-20">
+                    <div class="flex items-center mb-10">
+                        <img src="https://randomuser.me/api/portraits/women/23.jpg" alt="User" class="avatar">
+                        <div class="ml-10">
+                            <div class="font-bold">Sarah Johnson</div>
+                            <div class="text-gray">28 years old</div>
+                        </div>
+                    </div>
+                    <div class="user-tags">
+                        <div class="user-tag">Marketing Professional</div>
+                        <div class="user-tag">Foodie</div>
+                        <div class="user-tag">Speaks English, Spanish</div>
+                    </div>
+                    <div class="action-buttons mt-20">
+                        <div class="action-btn action-btn-accept">
+                            <i class="fas fa-check"></i> Accept
+                        </div>
+                        <div class="action-btn action-btn-decline">
+                            <i class="fas fa-times"></i> Decline
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notification Item 4 - System -->
+            <div class="card">
+                <div class="notification-item">
+                    <div class="notification-icon">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-title">New Restaurant Added</div>
+                        <div class="notification-message">
+                            Le Petit Bistro is now available in your area! Would you like to add it to your preferences?
+                        </div>
+                        <div class="notification-time">2 days ago</div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-outline">View Restaurant</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <div class="nav-bar">
+            <a href="home.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="explore.html" class="nav-item">
+                <i class="fas fa-compass"></i>
+                <span>Explore</span>
+            </a>
+            <a href="availability.html" class="nav-item">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Availability</span>
+            </a>
+            <a href="notifications.html" class="nav-item active">
+                <i class="fas fa-bell"></i>
+                <span>Alerts</span>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Action buttons functionality
+            const actionButtons = document.querySelectorAll('.action-btn');
+            actionButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const isAccept = this.classList.contains('action-btn-accept');
+                    const notificationCard = this.closest('.card');
+                    
+                    // In a real app, this would send a request to the server
+                    // For the prototype, we'll just update the UI
+                    
+                    // Show a temporary message
+                    const originalContent = notificationCard.innerHTML;
+                    notificationCard.innerHTML = `
+                        <div class="p-20 text-center">
+                            <div class="mb-10">
+                                <i class="fas fa-${isAccept ? 'check-circle text-success' : 'times-circle text-danger'}" style="font-size: 3rem;"></i>
+                            </div>
+                            <h3>${isAccept ? 'Accepted!' : 'Declined'}</h3>
+                            <p>${isAccept ? 'You have accepted this invitation. It has been added to your calendar.' : 'You have declined this invitation.'}</p>
+                        </div>
+                    `;
+                    
+                    // In a real app, we might remove the notification after a delay
+                    setTimeout(() => {
+                        notificationCard.classList.add('fade-out');
+                        setTimeout(() => {
+                            // In a prototype, we'll just restore the original content
+                            // In a real app, we might remove the notification
+                            notificationCard.classList.remove('fade-out');
+                            notificationCard.innerHTML = originalContent;
+                            
+                            // Update UI to show it's been handled
+                            const unreadDot = notificationCard.querySelector('.notification-unread');
+                            if (unreadDot) unreadDot.remove();
+                            
+                            const actionBtns = notificationCard.querySelectorAll('.action-btn');
+                            if (actionBtns.length) {
+                                const actionContainer = actionBtns[0].parentElement;
+                                actionContainer.innerHTML = `<div class="text-${isAccept ? 'success' : 'danger'}">
+                                    <i class="fas fa-${isAccept ? 'check' : 'times'}-circle"></i> 
+                                    ${isAccept ? 'Accepted' : 'Declined'}
+                                </div>`;
+                            }
+                        }, 300);
+                    }, 1500);
+                });
+            });
+            
+            // Mark all as read functionality
+            document.querySelector('.header a').addEventListener('click', function(e) {
+                e.preventDefault();
+                const unreadDots = document.querySelectorAll('.notification-unread');
+                unreadDots.forEach(dot => {
+                    dot.remove();
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EatTogether - Explore</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Explore</h1>
+            <button class="btn btn-outline">
+                <i class="fas fa-filter"></i> Filter
+            </button>
+        </div>
+
+        <div class="content-container">
+            <!-- Tab Bar -->
+            <div class="tab-bar">
+                <div class="tab active" data-tab="map">Map View</div>
+                <div class="tab" data-tab="list">List View</div>
+            </div>
+
+            <!-- Date Filter -->
+            <div class="date-picker">
+                <div class="date-item">
+                    <div class="date-day">Today</div>
+                    <div class="date-month">Oct 12</div>
+                </div>
+                <div class="date-item active">
+                    <div class="date-day">Wed</div>
+                    <div class="date-month">Oct 13</div>
+                </div>
+                <div class="date-item">
+                    <div class="date-day">Thu</div>
+                    <div class="date-month">Oct 14</div>
+                </div>
+                <div class="date-item">
+                    <div class="date-day">Fri</div>
+                    <div class="date-month">Oct 15</div>
+                </div>
+                <div class="date-item">
+                    <div class="date-day">Sat</div>
+                    <div class="date-month">Oct 16</div>
+                </div>
+                <div class="date-item">
+                    <div class="date-day">Sun</div>
+                    <div class="date-month">Oct 17</div>
+                </div>
+                <div class="date-item">
+                    <div class="date-day">Mon</div>
+                    <div class="date-month">Oct 18</div>
+                </div>
+            </div>
+
+            <!-- Meal Type Filter -->
+            <div class="filter-bar">
+                <div class="filter-item active">All</div>
+                <div class="filter-item">Breakfast</div>
+                <div class="filter-item">Lunch</div>
+                <div class="filter-item">Dinner</div>
+            </div>
+
+            <!-- Map View -->
+            <div class="tab-content" id="map-view">
+                <div class="map-container">
+                    <div class="map-view" id="map"></div>
+                    <!-- Map pins would be dynamically added in a real app -->
+                    <div class="map-pin" style="top: 120px; left: 150px;">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="map-pin active" style="top: 180px; left: 220px;">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="map-pin" style="top: 210px; left: 100px;">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                </div>
+
+                <!-- Selected Location Preview -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Trattoria Italiana</h3>
+                        <span class="badge badge-primary">Dinner • 7:30 PM</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="flex justify-between items-center mb-10">
+                            <div>
+                                <div class="mb-5">Italian • 0.8 mi away • $$$</div>
+                                <div class="restaurant-rating">
+                                    <i class="fas fa-star"></i> 4.8 (240+ reviews)
+                                </div>
+                            </div>
+                            <div class="avatar-group">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" class="avatar">
+                                <img src="https://randomuser.me/api/portraits/women/85.jpg" alt="User" class="avatar">
+                                <div class="avatar-count">+1</div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary w-full">Join this Table</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- List View -->
+            <div class="tab-content" id="list-view" style="display: none;">
+                <!-- Meal Listing 1 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Trattoria Italiana</h3>
+                        <span class="badge badge-primary">Dinner • 7:30 PM</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="flex justify-between items-center mb-10">
+                            <div>
+                                <div class="mb-5">Italian • 0.8 mi away • $$$</div>
+                                <div class="restaurant-rating">
+                                    <i class="fas fa-star"></i> 4.8 (240+ reviews)
+                                </div>
+                            </div>
+                            <div class="avatar-group">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" class="avatar">
+                                <img src="https://randomuser.me/api/portraits/women/85.jpg" alt="User" class="avatar">
+                                <div class="avatar-count">+1</div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary w-full">Join this Table</button>
+                    </div>
+                </div>
+
+                <!-- Meal Listing 2 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Sakura Sushi</h3>
+                        <span class="badge badge-primary">Lunch • 12:30 PM</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="flex justify-between items-center mb-10">
+                            <div>
+                                <div class="mb-5">Japanese • 1.2 mi away • $$</div>
+                                <div class="restaurant-rating">
+                                    <i class="fas fa-star"></i> 4.6 (180+ reviews)
+                                </div>
+                            </div>
+                            <div class="avatar-group">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User" class="avatar">
+                                <div class="avatar-count">+3</div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary w-full">Join this Table</button>
+                    </div>
+                </div>
+
+                <!-- Meal Listing 3 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>El Mariachi</h3>
+                        <span class="badge badge-primary">Dinner • 8:00 PM</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="flex justify-between items-center mb-10">
+                            <div>
+                                <div class="mb-5">Mexican • 0.6 mi away • $$</div>
+                                <div class="restaurant-rating">
+                                    <i class="fas fa-star"></i> 4.5 (150+ reviews)
+                                </div>
+                            </div>
+                            <div class="avatar-group">
+                                <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="User" class="avatar">
+                                <img src="https://randomuser.me/api/portraits/women/23.jpg" alt="User" class="avatar">
+                                <div class="avatar-count">+2</div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary w-full">Join this Table</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating Action Button -->
+        <div class="fab">
+            <i class="fas fa-plus"></i>
+        </div>
+
+        <!-- Navigation Bar -->
+        <div class="nav-bar">
+            <a href="home.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="explore.html" class="nav-item active">
+                <i class="fas fa-compass"></i>
+                <span>Explore</span>
+            </a>
+            <a href="availability.html" class="nav-item">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Availability</span>
+            </a>
+            <a href="notifications.html" class="nav-item">
+                <i class="fas fa-bell"></i>
+                <span>Alerts</span>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab switching
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Update active tab
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show corresponding content
+                    tabContents.forEach(content => {
+                        content.style.display = 'none';
+                    });
+                    document.getElementById(tabId + '-view').style.display = 'block';
+                });
+            });
+
+            // Date selection
+            const dateItems = document.querySelectorAll('.date-item');
+            dateItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    dateItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                    // In a real app, this would filter the meals based on date
+                });
+            });
+
+            // Meal type filter
+            const filterItems = document.querySelectorAll('.filter-item');
+            filterItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    filterItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                    // In a real app, this would filter the meals based on type
+                });
+            });
+
+            // Join button functionality
+            const joinButtons = document.querySelectorAll('.btn-primary');
+            joinButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // In a real app, this would send a join request
+                    const originalText = this.textContent;
+                    this.textContent = 'Request Sent!';
+                    this.classList.add('btn-success');
+                    this.classList.remove('btn-primary');
+                    
+                    // For demo purposes, reset after a delay
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                        this.classList.remove('btn-success');
+                        this.classList.add('btn-primary');
+                    }, 3000);
+                });
+            });
+
+            // Floating action button
+            document.querySelector('.fab').addEventListener('click', function() {
+                window.location.href = 'availability.html';
+            });
+
+            // Initialize map (would be replaced with actual map in a real implementation)
+            try {
+                mapboxgl.accessToken = 'pk.eyJ1IjoiZGVzaWduZXIiLCJhIjoiY2xpYmVocGVmMGVxcDNmbzNnYTQ0eTBsNyJ9.Y_azS7In7Xg1ImBxlP_3pw';
+                const map = new mapboxgl.Map({
+                    container: 'map',
+                    style: 'mapbox://styles/mapbox/light-v10',
+                    center: [-122.4194, 37.7749], // Example: San Francisco
+                    zoom: 13
+                });
+            } catch (e) {
+                console.log('Map could not be initialized: ', e);
+                // Fallback for prototype when map can't be initialized
+            }
+        });
+    </script>
+</body>
+</html>

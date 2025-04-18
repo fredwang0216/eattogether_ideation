@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EatTogether - Select Restaurants</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="header-with-back">
+            <a href="availability.html" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h1>Select Restaurants</h1>
+        </div>
+
+        <div class="content-container">
+            <!-- Tab Bar -->
+            <div class="tab-bar">
+                <div class="tab active" data-tab="map">Map View</div>
+                <div class="tab" data-tab="list">List View</div>
+            </div>
+
+            <!-- Filter Options -->
+            <div class="filter-bar">
+                <div class="filter-item active">All</div>
+                <div class="filter-item">Within 1 mile</div>
+                <div class="filter-item">Within 3 miles</div>
+                <div class="filter-item">Italian</div>
+                <div class="filter-item">Japanese</div>
+                <div class="filter-item">Mexican</div>
+                <div class="filter-item">Price: $$$</div>
+            </div>
+
+            <!-- Map View -->
+            <div class="tab-content" id="map-view">
+                <div class="map-container">
+                    <div class="map-view" id="map"></div>
+                    <!-- Map pins would be dynamically added in a real app -->
+                    <div class="map-pin" style="top: 120px; left: 150px;">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="map-pin active" style="top: 180px; left: 220px;">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="map-pin" style="top: 210px; left: 100px;">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                </div>
+
+                <!-- Selected Restaurants Preview -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Selected Restaurants</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="selected-restaurants">
+                            <div class="pill active">
+                                <i class="fas fa-check-circle"></i> Trattoria Italiana
+                            </div>
+                            <div class="pill">Add more...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- List View -->
+            <div class="tab-content" id="list-view" style="display: none;">
+                <div class="restaurant-list">
+                    <!-- Restaurant Item 1 -->
+                    <div class="restaurant-item">
+                        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Restaurant" class="restaurant-image">
+                        <div class="restaurant-info">
+                            <div class="restaurant-name">Trattoria Italiana</div>
+                            <div class="restaurant-details">Italian • 0.8 mi away • $$$</div>
+                            <div class="restaurant-rating">
+                                <i class="fas fa-star"></i> 4.8 (240+ reviews)
+                            </div>
+                        </div>
+                        <div class="restaurant-actions">
+                            <div class="checkbox checked">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Restaurant Item 2 -->
+                    <div class="restaurant-item">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Restaurant" class="restaurant-image">
+                        <div class="restaurant-info">
+                            <div class="restaurant-name">Sakura Sushi</div>
+                            <div class="restaurant-details">Japanese • 1.2 mi away • $$</div>
+                            <div class="restaurant-rating">
+                                <i class="fas fa-star"></i> 4.6 (180+ reviews)
+                            </div>
+                        </div>
+                        <div class="restaurant-actions">
+                            <div class="checkbox">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Restaurant Item 3 -->
+                    <div class="restaurant-item">
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Restaurant" class="restaurant-image">
+                        <div class="restaurant-info">
+                            <div class="restaurant-name">El Mariachi</div>
+                            <div class="restaurant-details">Mexican • 0.6 mi away • $$</div>
+                            <div class="restaurant-rating">
+                                <i class="fas fa-star"></i> 4.5 (150+ reviews)
+                            </div>
+                        </div>
+                        <div class="restaurant-actions">
+                            <div class="checkbox">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Restaurant Item 4 -->
+                    <div class="restaurant-item">
+                        <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Restaurant" class="restaurant-image">
+                        <div class="restaurant-info">
+                            <div class="restaurant-name">Bistro Chic</div>
+                            <div class="restaurant-details">French • 1.5 mi away • $$$</div>
+                            <div class="restaurant-rating">
+                                <i class="fas fa-star"></i> 4.9 (210+ reviews)
+                            </div>
+                        </div>
+                        <div class="restaurant-actions">
+                            <div class="checkbox">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Button -->
+            <a href="match-confirmation.html" class="btn btn-primary btn-large mb-20">Confirm Selection</a>
+        </div>
+
+        <!-- Navigation Bar -->
+        <div class="nav-bar">
+            <a href="home.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="explore.html" class="nav-item">
+                <i class="fas fa-compass"></i>
+                <span>Explore</span>
+            </a>
+            <a href="availability.html" class="nav-item active">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Availability</span>
+            </a>
+            <a href="notifications.html" class="nav-item">
+                <i class="fas fa-bell"></i>
+                <span>Alerts</span>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab switching
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Update active tab
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show corresponding content
+                    tabContents.forEach(content => {
+                        content.style.display = 'none';
+                    });
+                    document.getElementById(tabId + '-view').style.display = 'block';
+                });
+            });
+
+            // Filter selection
+            const filterItems = document.querySelectorAll('.filter-item');
+            filterItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    filterItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // Restaurant selection via checkbox
+            const checkboxes = document.querySelectorAll('.checkbox');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('click', function() {
+                    this.classList.toggle('checked');
+                    // In a real app, would update the selected restaurants list
+                });
+            });
+
+            // Initialize map (would be replaced with actual map in a real implementation)
+            try {
+                mapboxgl.accessToken = 'pk.eyJ1IjoiZGVzaWduZXIiLCJhIjoiY2xpYmVocGVmMGVxcDNmbzNnYTQ0eTBsNyJ9.Y_azS7In7Xg1ImBxlP_3pw';
+                const map = new mapboxgl.Map({
+                    container: 'map',
+                    style: 'mapbox://styles/mapbox/light-v10',
+                    center: [-122.4194, 37.7749], // Example: San Francisco
+                    zoom: 13
+                });
+            } catch (e) {
+                console.log('Map could not be initialized: ', e);
+                // Fallback for prototype when map can't be initialized
+            }
+        });
+    </script>
+</body>
+</html> 

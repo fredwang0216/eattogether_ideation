@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EatTogether - Set Availability</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header-with-back">
+            <a href="home.html" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h1>Set Availability</h1>
+        </div>
+
+        <div class="content-container">
+            <!-- Date Selection -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>When are you available?</h3>
+                </div>
+                <div class="card-body">
+                    <div class="date-picker">
+                        <div class="date-item">
+                            <div class="date-day">Today</div>
+                            <div class="date-month">Oct 12</div>
+                        </div>
+                        <div class="date-item active">
+                            <div class="date-day">Wed</div>
+                            <div class="date-month">Oct 13</div>
+                        </div>
+                        <div class="date-item">
+                            <div class="date-day">Thu</div>
+                            <div class="date-month">Oct 14</div>
+                        </div>
+                        <div class="date-item">
+                            <div class="date-day">Fri</div>
+                            <div class="date-month">Oct 15</div>
+                        </div>
+                        <div class="date-item">
+                            <div class="date-day">Sat</div>
+                            <div class="date-month">Oct 16</div>
+                        </div>
+                        <div class="date-item">
+                            <div class="date-day">Sun</div>
+                            <div class="date-month">Oct 17</div>
+                        </div>
+                        <div class="date-item">
+                            <div class="date-day">Mon</div>
+                            <div class="date-month">Oct 18</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Meal Type Selection -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>What meal?</h3>
+                </div>
+                <div class="card-body">
+                    <div class="btn-group">
+                        <div class="btn btn-outline">
+                            <i class="fas fa-coffee"></i> Breakfast
+                        </div>
+                        <div class="btn btn-outline">
+                            <i class="fas fa-utensils"></i> Lunch
+                        </div>
+                        <div class="btn btn-primary">
+                            <i class="fas fa-moon"></i> Dinner
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Time Selection -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>What time?</h3>
+                </div>
+                <div class="card-body">
+                    <div class="time-selector">
+                        <div class="time-item">5:00 PM</div>
+                        <div class="time-item">5:30 PM</div>
+                        <div class="time-item">6:00 PM</div>
+                        <div class="time-item active">6:30 PM</div>
+                        <div class="time-item">7:00 PM</div>
+                        <div class="time-item">7:30 PM</div>
+                        <div class="time-item">8:00 PM</div>
+                        <div class="time-item">8:30 PM</div>
+                        <div class="time-item">9:00 PM</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Group Size Selection -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>How many people would you like to meet?</h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <input type="range" min="1" max="10" value="4" class="slider" id="groupSizeSlider">
+                        <div class="flex justify-between">
+                            <span>1 person</span>
+                            <span id="groupSizeValue">4 people</span>
+                            <span>10 people</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Next Button -->
+            <a href="restaurant-selection.html" class="btn btn-primary btn-large mb-20">Next: Select Restaurants</a>
+        </div>
+
+        <!-- Navigation Bar -->
+        <div class="nav-bar">
+            <a href="home.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="explore.html" class="nav-item">
+                <i class="fas fa-compass"></i>
+                <span>Explore</span>
+            </a>
+            <a href="availability.html" class="nav-item active">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Availability</span>
+            </a>
+            <a href="notifications.html" class="nav-item">
+                <i class="fas fa-bell"></i>
+                <span>Alerts</span>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Date item selection
+            const dateItems = document.querySelectorAll('.date-item');
+            dateItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    dateItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // Meal type selection
+            const mealButtons = document.querySelectorAll('.btn-group .btn');
+            mealButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    mealButtons.forEach(b => {
+                        b.classList.remove('btn-primary');
+                        b.classList.add('btn-outline');
+                    });
+                    this.classList.remove('btn-outline');
+                    this.classList.add('btn-primary');
+                });
+            });
+
+            // Time selection
+            const timeItems = document.querySelectorAll('.time-item');
+            timeItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    timeItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // Group size slider
+            const slider = document.getElementById('groupSizeSlider');
+            const output = document.getElementById('groupSizeValue');
+            
+            slider.oninput = function() {
+                const value = this.value;
+                output.innerHTML = value + (value == 1 ? " person" : " people");
+            }
+        });
+    </script>
+</body>
+</html> 

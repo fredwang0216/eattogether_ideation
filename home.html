@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EatTogether - Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>EatTogether</h1>
+            <a href="profile.html">
+                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Profile" class="avatar">
+            </a>
+        </div>
+
+        <div class="content-container">
+            <!-- Quick Access Buttons -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>I'm Available For</h3>
+                </div>
+                <div class="card-body">
+                    <div class="btn-group">
+                        <a href="availability.html?meal=breakfast" class="btn btn-outline">
+                            <i class="fas fa-coffee"></i> Breakfast
+                        </a>
+                        <a href="availability.html?meal=lunch" class="btn btn-outline">
+                            <i class="fas fa-utensils"></i> Lunch
+                        </a>
+                        <a href="availability.html?meal=dinner" class="btn btn-outline">
+                            <i class="fas fa-moon"></i> Dinner
+                        </a>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="availability.html" class="btn btn-primary">Set Availability</a>
+                </div>
+            </div>
+
+            <!-- Upcoming Matches -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Upcoming Matches</h3>
+                    <a href="#" class="text-primary">See All</a>
+                </div>
+                <div class="card-body">
+                    <div class="upcoming-match">
+                        <div class="avatar-group">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" class="avatar">
+                            <img src="https://randomuser.me/api/portraits/women/85.jpg" alt="User" class="avatar">
+                            <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="User" class="avatar">
+                            <div class="avatar-count">+2</div>
+                        </div>
+
+                        <div class="match-details">
+                            <div class="match-details-item">
+                                <div class="match-details-icon">
+                                    <i class="fas fa-calendar"></i>
+                                </div>
+                                <div class="match-details-text">
+                                    Today, 7:30 PM
+                                </div>
+                            </div>
+                            <div class="match-details-item">
+                                <div class="match-details-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="match-details-text">
+                                    The Italian Place, 2.3 mi away
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary mt-10">View Details</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notifications -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Notifications</h3>
+                    <a href="notifications.html" class="text-primary">See All</a>
+                </div>
+                <div class="card-body">
+                    <div class="notification-list">
+                        <div class="notification-item">
+                            <div class="notification-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="notification-content">
+                                <div class="notification-title">New Match Found!</div>
+                                <div class="notification-message">
+                                    We've found a match for your dinner availability on Friday.
+                                </div>
+                                <div class="notification-time">15 min ago</div>
+                            </div>
+                            <div class="notification-unread"></div>
+                        </div>
+                        <div class="notification-item">
+                            <div class="notification-icon">
+                                <i class="fas fa-comment"></i>
+                            </div>
+                            <div class="notification-content">
+                                <div class="notification-title">New Message</div>
+                                <div class="notification-message">
+                                    Alex sent you a message about your upcoming dinner.
+                                </div>
+                                <div class="notification-time">1 hour ago</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <div class="nav-bar">
+            <a href="home.html" class="nav-item active">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="explore.html" class="nav-item">
+                <i class="fas fa-compass"></i>
+                <span>Explore</span>
+            </a>
+            <a href="availability.html" class="nav-item">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Availability</span>
+            </a>
+            <a href="notifications.html" class="nav-item">
+                <i class="fas fa-bell"></i>
+                <span>Alerts</span>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for interactions would go here
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sample code for handling button clicks
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    // Handle button click
+                    if (e.currentTarget.getAttribute('href') === '#') {
+                        e.preventDefault();
+                        // Handle in-page actions
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
