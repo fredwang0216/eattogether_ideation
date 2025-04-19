@@ -6,6 +6,9 @@ EatTogether is a mobile application that connects users for shared dining experi
 
 This high-fidelity prototype has been created using HTML, CSS, and JavaScript and includes all the core features of the application. It's designed to be fully interactive, providing a realistic user experience.
 
+### Design Update
+This version of the prototype has been modified to remove all profile pictures, using icon-based user representations instead to maintain privacy.
+
 ## Features
 
 1. **Set Availability**: Users can specify their availability for meals, including date, time, meal type, and preferred group size.
@@ -20,6 +23,7 @@ This high-fidelity prototype has been created using HTML, CSS, and JavaScript an
 - Quick access buttons for setting meal availability
 - Display of upcoming matches
 - Recent notifications
+- User representation via icons instead of profile pictures
 
 ### Availability Page (availability.html)
 - Date picker for selecting available dates
@@ -36,18 +40,21 @@ This high-fidelity prototype has been created using HTML, CSS, and JavaScript an
 - Match notifications with details
 - Action buttons to accept/decline invitations
 - Message notifications and system alerts
+- User icons instead of avatars for privacy
 
 ### Explore Page (explore.html)
 - Map view showing available dining options
 - List view of all available meals
 - Filtering by date and meal type
 - Join functionality for existing tables
+- User counts instead of profile pictures
 
 ### Profile Page (profile.html)
 - Personal information
 - Dining preferences including cuisine types
 - Dietary restrictions
 - App settings and preferences
+- Generic user icon instead of profile picture
 
 ## How to Use the Prototype
 
@@ -92,7 +99,7 @@ This prototype uses:
 - HTML5 for structure
 - CSS3 for styling with custom properties for theming
 - JavaScript for interactivity
-- FontAwesome for icons
+- FontAwesome for icons and user representation
 - Mapbox for map functionality
 - Responsive design for mobile-first approach
 
@@ -106,6 +113,7 @@ Key considerations for developers:
 - Connect to a backend for user authentication and data persistence
 - Implement push notifications for real-time alerts
 - Use native iOS UI components for optimal performance
+- Maintain privacy-focused design with no profile pictures
 
 ## Future Enhancements
 
@@ -114,4 +122,4 @@ Potential enhancements for the full application:
 - Integration with restaurant reservation systems
 - User ratings and reviews for restaurants and dining experiences
 - Expanded filter options for compatibility matching
-- Event creation for themed dining experiences # eattogether_ideation
+- Event creation for themed dining experiences

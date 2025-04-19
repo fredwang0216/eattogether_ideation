@@ -1020,4 +1020,63 @@ select.form-control {
 
 .text-gray {
     color: var(--gray-600);
+}
+
+/* Add these new styles for profile icons and user count badges */
+
+.profile-icon {
+    color: var(--gray-600);
+    transition: color 0.3s ease;
+}
+
+.profile-icon:hover {
+    color: var(--primary-color);
+}
+
+.profile-icon-large {
+    margin: 0 auto 15px;
+    color: white;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+}
+
+.user-count-badge {
+    background-color: var(--gray-200);
+    border-radius: 20px;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    color: var(--gray-700);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-count-badge i {
+    margin-right: 6px;
+    color: var(--primary-color);
+}
+
+.user-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--gray-200);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--gray-600);
+    font-size: 1.5rem;
+}
+
+.ml-10 {
+    margin-left: 10px;
+}
+
+.font-bold {
+    font-weight: 600;
 } 

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EatTogether - Prototype Showcase</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: var(--font-family);
+            background-color: var(--light-color);
+            color: var(--dark-color);
+        }
+        
+        .showcase-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .showcase-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        
+        .showcase-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .showcase-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .showcase-item {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .showcase-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+        
+        .showcase-preview {
+            position: relative;
+            height: 550px;
+            overflow: hidden;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        
+        .showcase-preview iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            transform: scale(0.9);
+            transform-origin: top center;
+            pointer-events: none;
+        }
+        
+        .showcase-info {
+            padding: 20px;
+        }
+        
+        .showcase-page-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+        
+        .showcase-description {
+            font-size: 0.95rem;
+            color: var(--gray-600);
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .showcase-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        
+        .showcase-link:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .back-to-index {
+            display: block;
+            text-align: center;
+            margin-top: 40px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .back-to-index:hover {
+            text-decoration: underline;
+        }
+
+        .feature-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            background-color: rgba(138, 43, 226, 0.1);
+            color: var(--primary-color);
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .showcase-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="showcase-container">
+        <div class="showcase-header">
+            <h1 class="showcase-title">EatTogether App Prototype</h1>
+            <p class="showcase-subtitle">A high-fidelity prototype that connects strangers for shared dining experiences based on availability, location, and restaurant preferences.</p>
+            <div class="feature-badge">Updated: No Profile Pictures</div>
+        </div>
+        
+        <div class="showcase-grid">
+            <!-- Splash Screen -->
+            <div class="showcase-item">
+                <div class="showcase-preview">
+                    <iframe src="index.html" title="Splash Screen"></iframe>
+                </div>
+                <div class="showcase-info">
+                    <h2 class="showcase-page-title">Splash Screen</h2>
+                    <p class="showcase-description">Initial loading screen with the app logo and tagline.</p>
+                    <a href="index.html" class="showcase-link">View Page</a>
+                </div>
+            </div>
+            
+            <!-- Home Page -->
+            <div class="showcase-item">
+                <div class="showcase-preview">
+                    <iframe src="home.html" title="Home Page"></iframe>
+                </div>
+                <div class="showcase-info">
+                    <h2 class="showcase-page-title">Home Page</h2>
+                    <p class="showcase-description">Main dashboard with quick access buttons, upcoming matches, and recent notifications.</p>
+                    <a href="home.html" class="showcase-link">View Page</a>
+                </div>
+            </div>
+            
+            <!-- Availability Page -->
+            <div class="showcase-item">
+                <div class="showcase-preview">
+                    <iframe src="availability.html" title="Availability Page"></iframe>
+                </div>
+                <div class="showcase-info">
+                    <h2 class="showcase-page-title">Availability Page</h2>
+                    <p class="showcase-description">Set your dining availability with date, time, meal type, and group size preferences.</p>
+                    <a href="availability.html" class="showcase-link">View Page</a>
+                </div>
+            </div>
+            
+            <!-- Restaurant Selection Page -->
+            <div class="showcase-item">
+                <div class="showcase-preview">
+                    <iframe src="restaurant-selection.html" title="Restaurant Selection Page"></iframe>
+                </div>
+                <div class="showcase-info">
+                    <h2 class="showcase-page-title">Restaurant Selection</h2>
+                    <p class="showcase-description">Select restaurants with map and list views, with filtering options for cuisine and distance.</p>
+                    <a href="restaurant-selection.html" class="showcase-link">View Page</a>
+                </div>
+            </div>
+            
+            <!-- Notifications Page -->
+            <div class="showcase-item">
+                <div class="showcase-preview">
+                    <iframe src="notifications.html" title="Notifications Page"></iframe>
+                </div>
+                <div class="showcase-info">
+                    <h2 class="showcase-page-title">Notifications</h2>
+                    <p class="showcase-description">View and respond to match invitations, messages, and system alerts.</p>
+                    <a href="notifications.html" class="showcase-link">View Page</a>
+                </div>
+            </div>
+            
+            <!-- Explore Page -->
+            <div class="showcase-item">
+                <div class="showcase-preview">
+                    <iframe src="explore.html" title="Explore Page"></iframe>
+                </div>
+                <div class="showcase-info">
+                    <h2 class="showcase-page-title">Explore</h2>
+                    <p class="showcase-description">Discover available dining options with map and list views, filtered by date and meal type.</p>
+                    <a href="explore.html" class="showcase-link">View Page</a>
+                </div>
+            </div>
+            
+            <!-- Profile Page -->
+            <div class="showcase-item">
+                <div class="showcase-preview">
+                    <iframe src="profile.html" title="Profile Page"></iframe>
+                </div>
+                <div class="showcase-info">
+                    <h2 class="showcase-page-title">Profile</h2>
+                    <p class="showcase-description">Manage personal information, dining preferences, dietary restrictions, and app settings.</p>
+                    <a href="profile.html" class="showcase-link">View Page</a>
+                </div>
+            </div>
+        </div>
+        
+        <a href="index.html" class="back-to-index">
+            <i class="fas fa-arrow-left"></i> Start from the beginning
+        </a>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Adding a small delay to ensure iframes load properly
+            setTimeout(() => {
+                const iframes = document.querySelectorAll('iframe');
+                iframes.forEach(iframe => {
+                    iframe.style.opacity = '1';
+                });
+            }, 500);
+            
+            // Force the iframes to reload to show the latest changes
+            const reloadIframes = () => {
+                const iframes = document.querySelectorAll('iframe');
+                iframes.forEach(iframe => {
+                    const src = iframe.src;
+                    iframe.src = '';
+                    setTimeout(() => {
+                        iframe.src = src;
+                    }, 100);
+                });
+            };
+            
+            // Reload iframes when the page loads
+            reloadIframes();
+        });
+    </script>
+</body>
+</html> 
