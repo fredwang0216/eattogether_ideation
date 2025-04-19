@@ -13,14 +13,30 @@
             <a href="home.html" class="back-button">
                 <i class="fas fa-arrow-left"></i>
             </a>
-            <h1>Set Availability</h1>
+            <h1>When are you available?</h1>
         </div>
 
         <div class="content-container">
+            <!-- Progress Indicator -->
+            <div class="progress-steps">
+                <div class="progress-step active">
+                    <div class="progress-step-number">1</div>
+                    <div class="progress-step-label">When</div>
+                </div>
+                <div class="progress-step">
+                    <div class="progress-step-number">2</div>
+                    <div class="progress-step-label">Where</div>
+                </div>
+                <div class="progress-step">
+                    <div class="progress-step-number">3</div>
+                    <div class="progress-step-label">Who</div>
+                </div>
+            </div>
+
             <!-- Date Selection -->
             <div class="card">
                 <div class="card-header">
-                    <h3>When are you available?</h3>
+                    <h3>Select a date</h3>
                 </div>
                 <div class="card-body">
                     <div class="date-picker">
@@ -62,17 +78,29 @@
                     <h3>What meal?</h3>
                 </div>
                 <div class="card-body">
-                    <div class="btn-group">
-                        <div class="btn btn-outline">
-                            <i class="fas fa-coffee"></i> Breakfast
+                    <!-- Primary meal options (more salient) -->
+                    <div class="primary-meal-options">
+                        <div class="btn btn-outline meal-option-primary" data-value="lunch">
+                            Lunch
                         </div>
-                        <div class="btn btn-outline">
-                            <i class="fas fa-utensils"></i> Lunch
-                        </div>
-                        <div class="btn btn-primary">
-                            <i class="fas fa-moon"></i> Dinner
+                        <div class="btn btn-primary meal-option-primary" data-value="dinner">
+                            Dinner
                         </div>
                     </div>
+                    
+                    <!-- Secondary meal options (less prominent) -->
+                    <div class="secondary-meal-options">
+                        <div class="btn btn-outline meal-option-secondary" data-value="breakfast">
+                            Breakfast
+                        </div>
+                        <div class="btn btn-outline meal-option-secondary" data-value="brunch">
+                            Brunch
+                        </div>
+                        <div class="btn btn-outline meal-option-secondary" data-value="afternoon-tea">
+                            Afternoon Tea
+                        </div>
+                    </div>
+                    <input type="hidden" id="mealTypeValue" value="dinner">
                 </div>
             </div>
 
@@ -96,25 +124,8 @@
                 </div>
             </div>
 
-            <!-- Group Size Selection -->
-            <div class="card">
-                <div class="card-header">
-                    <h3>How many people would you like to meet?</h3>
-                </div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <input type="range" min="1" max="10" value="4" class="slider" id="groupSizeSlider">
-                        <div class="flex justify-between">
-                            <span>1 person</span>
-                            <span id="groupSizeValue">4 people</span>
-                            <span>10 people</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <!-- Next Button -->
-            <a href="restaurant-selection.html" class="btn btn-primary btn-large mb-20">Next: Select Restaurants</a>
+            <a href="location-selection.html" class="btn btn-primary btn-large mb-20">Next: Choose Location</a>
         </div>
 
         <!-- Navigation Bar -->
@@ -154,15 +165,23 @@
             });
 
             // Meal type selection
-            const mealButtons = document.querySelectorAll('.btn-group .btn');
+            const mealButtons = document.querySelectorAll('.primary-meal-options .btn, .secondary-meal-options .btn');
+            const mealTypeValue = document.getElementById('mealTypeValue');
+            
             mealButtons.forEach(button => {
                 button.addEventListener('click', function() {
+                    // Remove active class from all options
                     mealButtons.forEach(b => {
                         b.classList.remove('btn-primary');
                         b.classList.add('btn-outline');
                     });
+                    
+                    // Add active class to clicked option
                     this.classList.remove('btn-outline');
                     this.classList.add('btn-primary');
+                    
+                    // Update hidden value
+                    mealTypeValue.value = this.dataset.value;
                 });
             });
 
@@ -174,15 +193,6 @@
                     this.classList.add('active');
                 });
             });
-
-            // Group size slider
-            const slider = document.getElementById('groupSizeSlider');
-            const output = document.getElementById('groupSizeValue');
-            
-            slider.oninput = function() {
-                const value = this.value;
-                output.innerHTML = value + (value == 1 ? " person" : " people");
-            }
         });
     </script>
 </body>

@@ -23,20 +23,63 @@
                     <h3>I'm Available For</h3>
                 </div>
                 <div class="card-body">
-                    <div class="btn-group">
-                        <a href="availability.html?meal=breakfast" class="btn btn-outline">
-                            <i class="fas fa-coffee"></i> Breakfast
+                    <!-- Primary meal options (more salient) -->
+                    <div class="primary-meal-options">
+                        <a href="availability.html?meal=lunch" class="btn btn-primary meal-option-primary">
+                            Lunch
                         </a>
-                        <a href="availability.html?meal=lunch" class="btn btn-outline">
-                            <i class="fas fa-utensils"></i> Lunch
+                        <a href="availability.html?meal=dinner" class="btn btn-primary meal-option-primary">
+                            Dinner
                         </a>
-                        <a href="availability.html?meal=dinner" class="btn btn-outline">
-                            <i class="fas fa-moon"></i> Dinner
+                    </div>
+                    
+                    <!-- Secondary meal options (less prominent) -->
+                    <div class="secondary-meal-options">
+                        <a href="availability.html?meal=breakfast" class="btn btn-outline meal-option-secondary">
+                            Breakfast
+                        </a>
+                        <a href="availability.html?meal=brunch" class="btn btn-outline meal-option-secondary">
+                            Brunch
+                        </a>
+                        <a href="availability.html?meal=afternoon-tea" class="btn btn-outline meal-option-secondary">
+                            Afternoon Tea
                         </a>
                     </div>
                 </div>
                 <div class="card-footer">
-                    <a href="availability.html" class="btn btn-primary">Set Availability</a>
+                    <a href="availability.html" class="btn btn-primary">Start Planning a Meal</a>
+                </div>
+            </div>
+            
+            <!-- Planning Steps -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>How It Works</h3>
+                </div>
+                <div class="card-body">
+                    <div class="steps-container">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <div class="step-title">Set When</div>
+                                <div class="step-description">Choose date, meal type and time</div>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <div class="step-title">Set Where</div>
+                                <div class="step-description">Select a location</div>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <div class="step-title">Set Who</div>
+                                <div class="step-description">Define your preferred companions</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 

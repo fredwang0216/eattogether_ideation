@@ -58,11 +58,19 @@
             </div>
 
             <!-- Meal Type Filter -->
-            <div class="filter-bar">
-                <div class="filter-item active">All</div>
-                <div class="filter-item">Breakfast</div>
-                <div class="filter-item">Lunch</div>
-                <div class="filter-item">Dinner</div>
+            <div class="filter-container">
+                <!-- Primary filters -->
+                <div class="primary-filters">
+                    <div class="filter-item active">All</div>
+                    <div class="filter-item">Lunch</div>
+                    <div class="filter-item">Dinner</div>
+                </div>
+                <!-- Secondary filters -->
+                <div class="secondary-filters">
+                    <div class="filter-item">Breakfast</div>
+                    <div class="filter-item">Brunch</div>
+                    <div class="filter-item">Afternoon Tea</div>
+                </div>
             </div>
 
             <!-- Map View -->
@@ -237,7 +245,7 @@
             });
 
             // Meal type filter
-            const filterItems = document.querySelectorAll('.filter-item');
+            const filterItems = document.querySelectorAll('.primary-filters .filter-item, .secondary-filters .filter-item');
             filterItems.forEach(item => {
                 item.addEventListener('click', function() {
                     filterItems.forEach(i => i.classList.remove('active'));

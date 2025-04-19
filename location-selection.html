@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EatTogether - Choose Location</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="header-with-back">
+            <a href="availability.html" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h1>Where would you like to eat?</h1>
+        </div>
+
+        <div class="content-container">
+            <!-- Progress Indicator -->
+            <div class="progress-steps">
+                <div class="progress-step completed">
+                    <div class="progress-step-number"><i class="fas fa-check"></i></div>
+                    <div class="progress-step-label">When</div>
+                </div>
+                <div class="progress-step active">
+                    <div class="progress-step-number">2</div>
+                    <div class="progress-step-label">Where</div>
+                </div>
+                <div class="progress-step">
+                    <div class="progress-step-number">3</div>
+                    <div class="progress-step-label">Who</div>
+                </div>
+            </div>
+
+            <!-- Location Type Tabs -->
+            <div class="tab-bar">
+                <div class="tab active" data-tab="map">Map View</div>
+                <div class="tab" data-tab="saved">Saved Places</div>
+            </div>
+
+            <!-- Map View -->
+            <div class="tab-content" id="map-view">
+                <!-- Search Bar -->
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search for a location...">
+                </div>
+
+                <div class="map-container">
+                    <div class="map-view" id="map"></div>
+                    <!-- Map pins would be dynamically added in a real app -->
+                    <div class="map-pin" style="top: 120px; left: 150px;">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="map-pin active" style="top: 180px; left: 220px;">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="map-pin" style="top: 210px; left: 100px;">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                </div>
+
+                <!-- Selected Location Preview -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Selected Location</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="selected-location">
+                            <div class="location-name">San Francisco Downtown</div>
+                            <div class="location-address">Market Street, SF, CA 94103</div>
+                            <div class="location-detail">5 restaurants available in this area</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Saved Places View -->
+            <div class="tab-content" id="saved-view" style="display: none;">
+                <div class="saved-locations-list">
+                    <div class="location-item active">
+                        <div class="location-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="location-info">
+                            <div class="location-name">Work</div>
+                            <div class="location-address">Financial District, SF</div>
+                        </div>
+                        <div class="location-action">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                    </div>
+
+                    <div class="location-item">
+                        <div class="location-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="location-info">
+                            <div class="location-name">Home</div>
+                            <div class="location-address">Mission District, SF</div>
+                        </div>
+                        <div class="location-action">
+                            <i class="fas fa-circle"></i>
+                        </div>
+                    </div>
+
+                    <div class="location-item">
+                        <div class="location-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="location-info">
+                            <div class="location-name">University</div>
+                            <div class="location-address">Berkeley, CA</div>
+                        </div>
+                        <div class="location-action">
+                            <i class="fas fa-circle"></i>
+                        </div>
+                    </div>
+
+                    <div class="location-item">
+                        <div class="location-icon">
+                            <i class="fas fa-plus-circle"></i>
+                        </div>
+                        <div class="location-info">
+                            <div class="location-name">Add New Location</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Next Button -->
+            <a href="matching-preferences.html" class="btn btn-primary btn-large mb-20">Next: Choose Who To Meet</a>
+        </div>
+
+        <!-- Navigation Bar -->
+        <div class="nav-bar">
+            <a href="home.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="explore.html" class="nav-item">
+                <i class="fas fa-compass"></i>
+                <span>Explore</span>
+            </a>
+            <a href="availability.html" class="nav-item active">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Availability</span>
+            </a>
+            <a href="notifications.html" class="nav-item">
+                <i class="fas fa-bell"></i>
+                <span>Alerts</span>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab switching
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Update active tab
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show corresponding content
+                    tabContents.forEach(content => {
+                        content.style.display = 'none';
+                    });
+                    document.getElementById(tabId + '-view').style.display = 'block';
+                });
+            });
+
+            // Location item selection
+            const locationItems = document.querySelectorAll('.location-item');
+            locationItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    locationItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update indicators except for the add new option
+                    if (!this.querySelector('.fa-plus-circle')) {
+                        locationItems.forEach(i => {
+                            const icon = i.querySelector('.location-action i');
+                            if (icon) {
+                                icon.className = 'fas fa-circle';
+                            }
+                        });
+                        
+                        const actionIcon = this.querySelector('.location-action i');
+                        if (actionIcon) {
+                            actionIcon.className = 'fas fa-check-circle';
+                        }
+                    }
+                });
+            });
+
+            // Initialize map (would be replaced with actual map in a real implementation)
+            try {
+                mapboxgl.accessToken = 'pk.eyJ1IjoiZGVzaWduZXIiLCJhIjoiY2xpYmVocGVmMGVxcDNmbzNnYTQ0eTBsNyJ9.Y_azS7In7Xg1ImBxlP_3pw';
+                const map = new mapboxgl.Map({
+                    container: 'map',
+                    style: 'mapbox://styles/mapbox/light-v10',
+                    center: [-122.4194, 37.7749], // Example: San Francisco
+                    zoom: 13
+                });
+            } catch (e) {
+                console.log('Map could not be initialized: ', e);
+                // Fallback for prototype when map can't be initialized
+            }
+        });
+    </script>
+</body>
+</html> 

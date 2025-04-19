@@ -49,6 +49,65 @@
                 </div>
             </div>
 
+            <!-- Matching Preferences Section -->
+            <div class="card profile-section">
+                <div class="card-header">
+                    <h3>Matching Preferences</h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Preferred Group Size</label>
+                        <div class="group-size-selector">
+                            <div class="group-size-option" data-value="1">
+                                <i class="fas fa-user"></i>
+                                <span>1 vs 1</span>
+                            </div>
+                            <div class="group-size-option active" data-value="2">
+                                <i class="fas fa-users"></i>
+                                <span>2~3</span>
+                            </div>
+                            <div class="group-size-option" data-value="3">
+                                <i class="fas fa-user-friends"></i>
+                                <span>More than 3</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group mt-20">
+                        <label>Preferred Gender to Meet</label>
+                        <div class="gender-preference-selector">
+                            <div class="gender-option active" data-value="any">
+                                <i class="fas fa-users"></i>
+                                <span>Any gender</span>
+                            </div>
+                            <div class="gender-option" data-value="same">
+                                <i class="fas fa-venus-mars"></i>
+                                <span>Same as mine</span>
+                            </div>
+                            <div class="gender-option" data-value="different">
+                                <i class="fas fa-transgender-alt"></i>
+                                <span>Different than mine</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group mt-20">
+                        <label>Preferred Age Range</label>
+                        <div class="age-range-selector">
+                            <div class="age-range-labels">
+                                <span id="profileMinAgeLabel">25</span>
+                                <span id="profileMaxAgeLabel">35</span>
+                            </div>
+                            <div class="age-range-sliders">
+                                <input type="range" id="profileMinAgeSlider" class="age-slider" min="18" max="55" value="25">
+                                <input type="range" id="profileMaxAgeSlider" class="age-slider" min="18" max="55" value="35">
+                            </div>
+                            <div class="age-range-text">
+                                <span id="profileAgeRangeDisplay">25-35 years</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Dining Preferences Section -->
             <div class="card profile-section">
                 <div class="card-header">
@@ -73,10 +132,6 @@
                             <div class="pill">Gluten-Free</div>
                             <div class="pill">Dairy-Free</div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Preferred Group Size</label>
-                        <div class="form-control">3-5 people</div>
                     </div>
                 </div>
             </div>
@@ -170,6 +225,73 @@
                     this.classList.toggle('active');
                 });
             });
+
+            // Group size selection
+            const groupSizeOptions = document.querySelectorAll('.group-size-option');
+            groupSizeOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove active class from all options
+                    groupSizeOptions.forEach(o => o.classList.remove('active'));
+                    
+                    // Add active class to clicked option
+                    this.classList.add('active');
+                });
+            });
+
+            // Gender preference selection
+            const genderOptions = document.querySelectorAll('.gender-option');
+            genderOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove active class from all options
+                    genderOptions.forEach(o => o.classList.remove('active'));
+                    
+                    // Add active class to clicked option
+                    this.classList.add('active');
+                });
+            });
+
+            // Age range sliders
+            const minAgeSlider = document.getElementById('profileMinAgeSlider');
+            const maxAgeSlider = document.getElementById('profileMaxAgeSlider');
+            const minAgeLabel = document.getElementById('profileMinAgeLabel');
+            const maxAgeLabel = document.getElementById('profileMaxAgeLabel');
+            const ageRangeDisplay = document.getElementById('profileAgeRangeDisplay');
+
+            // Update min age
+            minAgeSlider.addEventListener('input', function() {
+                const minValue = parseInt(this.value);
+                const maxValue = parseInt(maxAgeSlider.value);
+                
+                // Ensure min doesn't exceed max
+                if (minValue > maxValue) {
+                    maxAgeSlider.value = minValue;
+                    maxAgeLabel.textContent = minValue === 55 ? '55+' : minValue;
+                }
+                
+                minAgeLabel.textContent = minValue;
+                updateAgeRangeDisplay();
+            });
+
+            // Update max age
+            maxAgeSlider.addEventListener('input', function() {
+                const maxValue = parseInt(this.value);
+                const minValue = parseInt(minAgeSlider.value);
+                
+                // Ensure max doesn't go below min
+                if (maxValue < minValue) {
+                    minAgeSlider.value = maxValue;
+                    minAgeLabel.textContent = maxValue;
+                }
+                
+                maxAgeLabel.textContent = maxValue === 55 ? '55+' : maxValue;
+                updateAgeRangeDisplay();
+            });
+
+            function updateAgeRangeDisplay() {
+                const minValue = parseInt(minAgeSlider.value);
+                const maxValue = parseInt(maxAgeSlider.value);
+                ageRangeDisplay.textContent = `${minValue}-${maxValue === 55 ? '55+' : maxValue} years`;
+            }
 
             // Edit button functionality
             document.querySelector('.header a').addEventListener('click', function(e) {

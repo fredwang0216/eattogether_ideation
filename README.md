@@ -7,34 +7,62 @@ EatTogether is a mobile application that connects users for shared dining experi
 This high-fidelity prototype has been created using HTML, CSS, and JavaScript and includes all the core features of the application. It's designed to be fully interactive, providing a realistic user experience.
 
 ### Design Update
-This version of the prototype has been modified to remove all profile pictures, using icon-based user representations instead to maintain privacy.
+This updated version features a streamlined 3-step meal planning process and enhanced matching preferences, allowing users to specify gender and age preferences for better compatibility.
 
 ## Features
 
-1. **Set Availability**: Users can specify their availability for meals, including date, time, meal type, and preferred group size.
-2. **Restaurant Selection**: Users can choose restaurants based on location, cuisine type, and price range with both map and list views.
-3. **Explore Available Meetups**: Users can browse existing dining opportunities with other users.
-4. **Get Notifications**: Users receive notifications for match requests, confirmed bookings, and other alerts.
-5. **Manage Profile**: Users can set preferences, dietary restrictions, and personal information.
+1. **3-Step Meal Planning**:
+   - **When**: Set date, choose from primary meal options (lunch, dinner) or secondary options (breakfast, brunch, afternoon tea), and select time
+   - **Where**: Choose from saved locations or explore new areas
+   - **Who**: Define group size, gender preference, and age range
+   
+2. **Default Preference Settings**: Save matching preferences in your profile for quicker meal planning
+   
+3. **Location Management**: Save frequently used locations and search for new ones
+   
+4. **Explore Available Meetups**: Browse existing dining opportunities with other users
+
+5. **Get Notifications**: Receive notifications for match requests, confirmed bookings, and other alerts
+
+6. **Manage Profile**: Set dining preferences, matching preferences, and personal information
 
 ## Pages
 
 ### Home Page (home.html)
 - Quick access buttons for setting meal availability
+- Overview of the 3-step process
 - Display of upcoming matches
 - Recent notifications
 - User representation via icons instead of profile pictures
 
-### Availability Page (availability.html)
+### Availability Page (availability.html) - Step 1: When
+- Progress indicator showing the 3-step process
 - Date picker for selecting available dates
 - Meal type selection (breakfast, lunch, dinner)
 - Time selection
+
+### Location Selection Page (location-selection.html) - Step 2: Where
+- Map view showing nearby locations
+- Saved locations list
+- Search functionality for finding new locations
+
+### Matching Preferences Page (matching-preferences.html) - Step 3: Who
 - Group size preference
+- Gender preference options
+- Age range selection using dual sliders
+- Option to save preferences as defaults
 
 ### Restaurant Selection Page (restaurant-selection.html)
 - Map view showing nearby restaurants
 - List view with restaurant details
 - Filters for cuisine type, distance, and price
+
+### Profile Page (profile.html)
+- Personal information
+- Matching preferences section (group size, gender, age range)
+- Dining preferences (cuisine types, dietary restrictions)
+- App settings and preferences
+- Generic user icon instead of profile picture
 
 ### Notifications Page (notifications.html)
 - Match notifications with details
@@ -49,13 +77,6 @@ This version of the prototype has been modified to remove all profile pictures, 
 - Join functionality for existing tables
 - User counts instead of profile pictures
 
-### Profile Page (profile.html)
-- Personal information
-- Dining preferences including cuisine types
-- Dietary restrictions
-- App settings and preferences
-- Generic user icon instead of profile picture
-
 ## How to Use the Prototype
 
 1. **Access the Prototype**: Open `index.html` in a web browser to start.
@@ -67,15 +88,13 @@ This version of the prototype has been modified to remove all profile pictures, 
    - Notifications
    - Profile
 
-3. **Set Availability**:
-   - From Home, click "Set Availability"
-   - Select a date, meal type, time, and group size
-   - Click "Next: Select Restaurants"
+3. **Plan a Meal in 3 Steps**:
+   - **Step 1**: Select date, meal type (with lunch and dinner as primary options), and time
+   - **Step 2**: Choose a location (saved or new)
+   - **Step 3**: Set matching preferences (group size, gender, age range)
+   - Then select restaurants and finalize
 
-4. **Select Restaurants**:
-   - View restaurants on the map or in list view
-   - Select preferred restaurants by clicking the checkboxes
-   - Click "Confirm Selection" to finalize
+4. **Save Default Preferences**: Configure default matching preferences in the profile section to streamline future meal planning
 
 5. **Explore Available Meals**:
    - Browse the Explore page to see dining options
@@ -90,7 +109,8 @@ This version of the prototype has been modified to remove all profile pictures, 
 
 7. **Edit Profile**:
    - Update personal information
-   - Set dining preferences and dietary restrictions
+   - Set matching preferences (group size, gender, age range)
+   - Configure dining preferences and dietary restrictions
    - Configure app settings
 
 ## Technical Implementation
@@ -121,5 +141,5 @@ Potential enhancements for the full application:
 - Chat functionality for users before and after meals
 - Integration with restaurant reservation systems
 - User ratings and reviews for restaurants and dining experiences
-- Expanded filter options for compatibility matching
+- Advanced matching algorithms based on dining preferences and social compatibility
 - Event creation for themed dining experiences

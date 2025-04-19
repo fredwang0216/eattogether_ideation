@@ -1079,4 +1079,457 @@ select.form-control {
 
 .font-bold {
     font-weight: 600;
+}
+
+/* Add these styles for the group size selector */
+.group-size-selector {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.group-size-option {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 10px;
+    background-color: white;
+    border: 2px solid var(--gray-300);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.group-size-option i {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+    color: var(--gray-600);
+}
+
+.group-size-option span {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.group-size-option.active {
+    border-color: var(--primary-color);
+    background-color: rgba(138, 43, 226, 0.1);
+}
+
+.group-size-option.active i,
+.group-size-option.active span {
+    color: var(--primary-color);
+}
+
+.group-size-option:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Progress Steps */
+.progress-steps {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0 30px;
+    position: relative;
+}
+
+.progress-steps::before {
+    content: '';
+    position: absolute;
+    top: 25px;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background-color: var(--gray-300);
+    z-index: 0;
+}
+
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    flex: 1;
+}
+
+.progress-step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--gray-300);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.progress-step.active .progress-step-number {
+    background-color: var(--primary-color);
+}
+
+.progress-step.completed .progress-step-number {
+    background-color: var(--success-color);
+}
+
+.progress-step-label {
+    font-size: 0.9rem;
+    color: var(--gray-600);
+    font-weight: 500;
+}
+
+.progress-step.active .progress-step-label {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.progress-step.completed .progress-step-label {
+    color: var(--success-color);
+    font-weight: 600;
+}
+
+/* Note Card */
+.note-card {
+    background-color: rgba(255, 255, 180, 0.2);
+    border-left: 4px solid #FFD700;
+    padding: 12px 15px;
+    margin: 0 0 20px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+}
+
+.note-card i {
+    color: #FFD700;
+    font-size: 1.2rem;
+    margin-right: 10px;
+}
+
+.note-card p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--gray-700);
+}
+
+/* Gender Preference Selector (similar to group size) */
+.gender-preference-selector {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.gender-option {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 10px;
+    background-color: white;
+    border: 2px solid var(--gray-300);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.gender-option i {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+    color: var(--gray-600);
+}
+
+.gender-option span {
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.gender-option.active {
+    border-color: var(--primary-color);
+    background-color: rgba(138, 43, 226, 0.1);
+}
+
+.gender-option.active i,
+.gender-option.active span {
+    color: var(--primary-color);
+}
+
+.gender-option:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Age Range Selectors */
+.age-range-selector {
+    padding: 10px 0;
+}
+
+.age-range-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.age-range-labels span {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.age-range-sliders {
+    position: relative;
+    height: 40px;
+}
+
+.age-slider {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    height: 5px;
+    -webkit-appearance: none;
+    background: var(--gray-300);
+    outline: none;
+    border-radius: 5px;
+}
+
+.age-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.age-range-text {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: var(--gray-600);
+}
+
+/* Search Bar */
+.search-bar {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.search-bar i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gray-500);
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 12px 15px 12px 40px;
+    border-radius: 30px;
+    border: 1px solid var(--gray-300);
+    background-color: white;
+    font-size: 0.95rem;
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* Location Items */
+.saved-locations-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.location-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background-color: white;
+    border: 1px solid var(--gray-300);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.location-item:hover {
+    background-color: var(--gray-100);
+    transform: translateY(-2px);
+}
+
+.location-item.active {
+    border-color: var(--primary-color);
+    background-color: rgba(138, 43, 226, 0.05);
+}
+
+.location-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--gray-200);
+    color: var(--gray-600);
+    margin-right: 15px;
+}
+
+.location-info {
+    flex: 1;
+}
+
+.location-name {
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.location-address {
+    font-size: 0.85rem;
+    color: var(--gray-600);
+}
+
+.location-action {
+    color: var(--gray-400);
+}
+
+.location-item.active .location-action {
+    color: var(--primary-color);
+}
+
+/* Selected Location */
+.selected-location {
+    padding: 5px 0;
+}
+
+.location-detail {
+    font-size: 0.85rem;
+    color: var(--gray-600);
+    margin-top: 5px;
+}
+
+/* Steps Container */
+.steps-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.step-item {
+    display: flex;
+    align-items: center;
+}
+
+.step-number {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    margin-right: 15px;
+}
+
+.step-content {
+    flex: 1;
+}
+
+.step-title {
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.step-description {
+    font-size: 0.9rem;
+    color: var(--gray-600);
+}
+
+/* Meal Options Styling */
+.primary-meal-options {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.secondary-meal-options {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.meal-option-primary {
+    flex: 1;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 15px 10px;
+    text-align: center;
+}
+
+.meal-option-secondary {
+    flex: 1;
+    font-size: 0.9rem;
+    padding: 10px 8px;
+    text-align: center;
+    color: var(--gray-600);
+}
+
+/* Filter Container */
+.filter-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 15px 0;
+    width: 100%;
+}
+
+.primary-filters {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 5px;
+}
+
+.primary-filters::-webkit-scrollbar {
+    display: none;
+}
+
+.secondary-filters {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 5px;
+}
+
+.secondary-filters::-webkit-scrollbar {
+    display: none;
+}
+
+.primary-filters .filter-item {
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 10px 20px;
+}
+
+.secondary-filters .filter-item {
+    font-size: 0.85rem;
+    font-weight: 400;
+    padding: 8px 15px;
+    color: var(--gray-600);
 } 

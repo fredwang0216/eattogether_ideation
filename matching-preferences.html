@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EatTogether - Matching Preferences</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header-with-back">
+            <a href="location-selection.html" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h1>Who would you like to meet?</h1>
+        </div>
+
+        <div class="content-container">
+            <!-- Progress Indicator -->
+            <div class="progress-steps">
+                <div class="progress-step completed">
+                    <div class="progress-step-number"><i class="fas fa-check"></i></div>
+                    <div class="progress-step-label">When</div>
+                </div>
+                <div class="progress-step completed">
+                    <div class="progress-step-number"><i class="fas fa-check"></i></div>
+                    <div class="progress-step-label">Where</div>
+                </div>
+                <div class="progress-step active">
+                    <div class="progress-step-number">3</div>
+                    <div class="progress-step-label">Who</div>
+                </div>
+            </div>
+
+            <!-- Note about preferences -->
+            <div class="note-card">
+                <i class="fas fa-info-circle"></i>
+                <p>You can set default preferences in your profile that will auto-fill here.</p>
+            </div>
+
+            <!-- Group Size Selection -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>How many people would you like to meet?</h3>
+                </div>
+                <div class="card-body">
+                    <div class="group-size-selector">
+                        <div class="group-size-option" data-value="1">
+                            <i class="fas fa-user"></i>
+                            <span>1 vs 1</span>
+                        </div>
+                        <div class="group-size-option" data-value="2">
+                            <i class="fas fa-users"></i>
+                            <span>2~3</span>
+                        </div>
+                        <div class="group-size-option active" data-value="3">
+                            <i class="fas fa-user-friends"></i>
+                            <span>More than 3</span>
+                        </div>
+                    </div>
+                    <input type="hidden" id="groupSizeValue" value="3">
+                </div>
+            </div>
+
+            <!-- Gender Preference -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Preferred gender to meet</h3>
+                </div>
+                <div class="card-body">
+                    <div class="gender-preference-selector">
+                        <div class="gender-option active" data-value="any">
+                            <i class="fas fa-users"></i>
+                            <span>Any gender</span>
+                        </div>
+                        <div class="gender-option" data-value="same">
+                            <i class="fas fa-venus-mars"></i>
+                            <span>Same as mine</span>
+                        </div>
+                        <div class="gender-option" data-value="different">
+                            <i class="fas fa-transgender-alt"></i>
+                            <span>Different than mine</span>
+                        </div>
+                    </div>
+                    <input type="hidden" id="genderPreferenceValue" value="any">
+                </div>
+            </div>
+
+            <!-- Age Range Preference -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Preferred age range</h3>
+                </div>
+                <div class="card-body">
+                    <div class="age-range-selector">
+                        <div class="age-range-labels">
+                            <span id="minAgeLabel">18</span>
+                            <span id="maxAgeLabel">55+</span>
+                        </div>
+                        <div class="age-range-sliders">
+                            <input type="range" id="minAgeSlider" class="age-slider" min="18" max="55" value="18">
+                            <input type="range" id="maxAgeSlider" class="age-slider" min="18" max="55" value="55">
+                        </div>
+                        <div class="age-range-text">
+                            <span id="ageRangeDisplay">18-55+ years</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Save as Default Option -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="preference-toggle">
+                        <div class="preference-toggle-label">Save these preferences as my defaults</div>
+                        <div class="toggle">
+                            <div class="toggle-handle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <a href="restaurant-selection.html" class="btn btn-primary btn-large mb-20">Next: Select Restaurants</a>
+        </div>
+
+        <!-- Navigation Bar -->
+        <div class="nav-bar">
+            <a href="home.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="explore.html" class="nav-item">
+                <i class="fas fa-compass"></i>
+                <span>Explore</span>
+            </a>
+            <a href="availability.html" class="nav-item active">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Availability</span>
+            </a>
+            <a href="notifications.html" class="nav-item">
+                <i class="fas fa-bell"></i>
+                <span>Alerts</span>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Group size selection
+            const groupSizeOptions = document.querySelectorAll('.group-size-option');
+            const groupSizeValue = document.getElementById('groupSizeValue');
+
+            groupSizeOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove active class from all options
+                    groupSizeOptions.forEach(o => o.classList.remove('active'));
+                    
+                    // Add active class to clicked option
+                    this.classList.add('active');
+                    
+                    // Update hidden value
+                    groupSizeValue.value = this.dataset.value;
+                });
+            });
+
+            // Gender preference selection
+            const genderOptions = document.querySelectorAll('.gender-option');
+            const genderPreferenceValue = document.getElementById('genderPreferenceValue');
+
+            genderOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove active class from all options
+                    genderOptions.forEach(o => o.classList.remove('active'));
+                    
+                    // Add active class to clicked option
+                    this.classList.add('active');
+                    
+                    // Update hidden value
+                    genderPreferenceValue.value = this.dataset.value;
+                });
+            });
+
+            // Age range sliders
+            const minAgeSlider = document.getElementById('minAgeSlider');
+            const maxAgeSlider = document.getElementById('maxAgeSlider');
+            const minAgeLabel = document.getElementById('minAgeLabel');
+            const maxAgeLabel = document.getElementById('maxAgeLabel');
+            const ageRangeDisplay = document.getElementById('ageRangeDisplay');
+
+            // Update min age
+            minAgeSlider.addEventListener('input', function() {
+                const minValue = parseInt(this.value);
+                const maxValue = parseInt(maxAgeSlider.value);
+                
+                // Ensure min doesn't exceed max
+                if (minValue > maxValue) {
+                    maxAgeSlider.value = minValue;
+                    maxAgeLabel.textContent = minValue === 55 ? '55+' : minValue;
+                }
+                
+                minAgeLabel.textContent = minValue;
+                updateAgeRangeDisplay();
+            });
+
+            // Update max age
+            maxAgeSlider.addEventListener('input', function() {
+                const maxValue = parseInt(this.value);
+                const minValue = parseInt(minAgeSlider.value);
+                
+                // Ensure max doesn't go below min
+                if (maxValue < minValue) {
+                    minAgeSlider.value = maxValue;
+                    minAgeLabel.textContent = maxValue;
+                }
+                
+                maxAgeLabel.textContent = maxValue === 55 ? '55+' : maxValue;
+                updateAgeRangeDisplay();
+            });
+
+            function updateAgeRangeDisplay() {
+                const minValue = parseInt(minAgeSlider.value);
+                const maxValue = parseInt(maxAgeSlider.value);
+                ageRangeDisplay.textContent = `${minValue}-${maxValue === 55 ? '55+' : maxValue} years`;
+            }
+
+            // Toggle functionality
+            const toggles = document.querySelectorAll('.toggle');
+            toggles.forEach(toggle => {
+                toggle.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
