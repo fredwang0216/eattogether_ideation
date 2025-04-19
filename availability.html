@@ -9,189 +9,183 @@
 </head>
 <body>
     <div class="container">
-        <div class="header-with-back">
-            <a href="home.html" class="back-button">
-                <i class="fas fa-arrow-left"></i>
-            </a>
-            <h1>When are you available?</h1>
+        <!-- Simple Header -->
+        <div class="simple-header">
+            <a href="showcase.html" class="simple-back-button">&lt;</a>
+            <h1 class="page-title">When are you available?</h1>
         </div>
 
-        <div class="content-container">
-            <!-- Progress Indicator -->
-            <div class="progress-steps">
-                <div class="progress-step active">
-                    <div class="progress-step-number">1</div>
-                    <div class="progress-step-label">When</div>
-                </div>
-                <div class="progress-step">
-                    <div class="progress-step-number">2</div>
-                    <div class="progress-step-label">Where</div>
-                </div>
-                <div class="progress-step">
-                    <div class="progress-step-number">3</div>
-                    <div class="progress-step-label">Who</div>
-                </div>
+        <!-- Modern Progress Steps -->
+        <div class="modern-progress-steps">
+            <div class="progress-step-item active">
+                <div class="step-circle">1</div>
+                <div class="step-label">When</div>
             </div>
-
-            <!-- Date Selection -->
-            <div class="card">
-                <div class="card-header">
-                    <h3>Select a date</h3>
-                </div>
-                <div class="card-body">
-                    <div class="date-picker">
-                        <div class="date-item">
-                            <div class="date-day">Today</div>
-                            <div class="date-month">Oct 12</div>
-                        </div>
-                        <div class="date-item active">
-                            <div class="date-day">Wed</div>
-                            <div class="date-month">Oct 13</div>
-                        </div>
-                        <div class="date-item">
-                            <div class="date-day">Thu</div>
-                            <div class="date-month">Oct 14</div>
-                        </div>
-                        <div class="date-item">
-                            <div class="date-day">Fri</div>
-                            <div class="date-month">Oct 15</div>
-                        </div>
-                        <div class="date-item">
-                            <div class="date-day">Sat</div>
-                            <div class="date-month">Oct 16</div>
-                        </div>
-                        <div class="date-item">
-                            <div class="date-day">Sun</div>
-                            <div class="date-month">Oct 17</div>
-                        </div>
-                        <div class="date-item">
-                            <div class="date-day">Mon</div>
-                            <div class="date-month">Oct 18</div>
-                        </div>
-                    </div>
-                </div>
+            <div class="progress-line"></div>
+            <div class="progress-step-item">
+                <div class="step-circle">2</div>
+                <div class="step-label">Where</div>
             </div>
-
-            <!-- Meal Type Selection -->
-            <div class="card">
-                <div class="card-header">
-                    <h3>What meal?</h3>
-                </div>
-                <div class="card-body">
-                    <!-- Primary meal options (more salient) -->
-                    <div class="primary-meal-options">
-                        <div class="btn btn-outline meal-option-primary" data-value="lunch">
-                            Lunch
-                        </div>
-                        <div class="btn btn-primary meal-option-primary" data-value="dinner">
-                            Dinner
-                        </div>
-                    </div>
-                    
-                    <!-- Secondary meal options (less prominent) -->
-                    <div class="secondary-meal-options">
-                        <div class="btn btn-outline meal-option-secondary" data-value="breakfast">
-                            Breakfast
-                        </div>
-                        <div class="btn btn-outline meal-option-secondary" data-value="brunch">
-                            Brunch
-                        </div>
-                        <div class="btn btn-outline meal-option-secondary" data-value="afternoon-tea">
-                            Afternoon Tea
-                        </div>
-                    </div>
-                    <input type="hidden" id="mealTypeValue" value="dinner">
-                </div>
+            <div class="progress-line"></div>
+            <div class="progress-step-item">
+                <div class="step-circle">3</div>
+                <div class="step-label">Who</div>
             </div>
-
-            <!-- Time Selection -->
-            <div class="card">
-                <div class="card-header">
-                    <h3>What time?</h3>
-                </div>
-                <div class="card-body">
-                    <div class="time-selector">
-                        <div class="time-item">5:00 PM</div>
-                        <div class="time-item">5:30 PM</div>
-                        <div class="time-item">6:00 PM</div>
-                        <div class="time-item active">6:30 PM</div>
-                        <div class="time-item">7:00 PM</div>
-                        <div class="time-item">7:30 PM</div>
-                        <div class="time-item">8:00 PM</div>
-                        <div class="time-item">8:30 PM</div>
-                        <div class="time-item">9:00 PM</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Next Button -->
-            <a href="location-selection.html" class="btn btn-primary btn-large mb-20">Next: Choose Location</a>
         </div>
 
-        <!-- Navigation Bar -->
-        <div class="nav-bar">
-            <a href="home.html" class="nav-item">
-                <i class="fas fa-home"></i>
-                <span>Home</span>
-            </a>
-            <a href="explore.html" class="nav-item">
-                <i class="fas fa-compass"></i>
-                <span>Explore</span>
-            </a>
-            <a href="availability.html" class="nav-item active">
-                <i class="fas fa-calendar-alt"></i>
-                <span>Availability</span>
-            </a>
-            <a href="notifications.html" class="nav-item">
-                <i class="fas fa-bell"></i>
-                <span>Alerts</span>
-            </a>
-            <a href="profile.html" class="nav-item">
-                <i class="fas fa-user"></i>
-                <span>Profile</span>
-            </a>
+        <!-- Date Selection Section -->
+        <div class="section-block">
+            <h2 class="section-title">Select a date</h2>
+            <div class="date-card-container">
+                <div class="date-card" data-value="today">
+                    <div class="date-card-day">Today</div>
+                    <div class="date-card-date">Jan 12</div>
+                </div>
+                <div class="date-card active" data-value="wednesday">
+                    <div class="date-card-day">Wed</div>
+                    <div class="date-card-date">Jan 13</div>
+                </div>
+                <div class="date-card" data-value="thursday">
+                    <div class="date-card-day">Thu</div>
+                    <div class="date-card-date">Jan 14</div>
+                </div>
+                <div class="date-card" data-value="friday">
+                    <div class="date-card-day">Fri</div>
+                    <div class="date-card-date">Jan 15</div>
+                </div>
+                <div class="date-card" data-value="saturday">
+                    <div class="date-card-day">Sat</div>
+                    <div class="date-card-date">Jan 16</div>
+                </div>
+            </div>
+            <input type="hidden" id="selectedDate" name="selectedDate" value="wednesday">
         </div>
+
+        <!-- Meal Type Selection Section -->
+        <div class="section-block">
+            <h2 class="section-title">What meal?</h2>
+            <div class="meal-primary-row">
+                <button class="meal-option-button" data-value="lunch">Lunch</button>
+                <button class="meal-option-button active" data-value="dinner">Dinner</button>
+            </div>
+            <div class="meal-secondary-row">
+                <button class="meal-option-button secondary" data-value="breakfast">Breakfast</button>
+                <button class="meal-option-button secondary" data-value="brunch">Brunch</button>
+                <button class="meal-option-button secondary" data-value="tea">Afternoon Tea</button>
+            </div>
+            <input type="hidden" id="selectedMeal" name="selectedMeal" value="dinner">
+        </div>
+
+        <!-- Time Selection Section -->
+        <div class="section-block">
+            <h2 class="section-title">What time?</h2>
+            <div class="time-grid">
+                <button class="time-option" data-value="5:30 PM">5:30 PM</button>
+                <button class="time-option" data-value="6:00 PM">6:00 PM</button>
+                <button class="time-option active" data-value="6:30 PM">6:30 PM</button>
+                <button class="time-option" data-value="7:00 PM">7:00 PM</button>
+                <button class="time-option" data-value="7:30 PM">7:30 PM</button>
+                <button class="time-option" data-value="8:00 PM">8:00 PM</button>
+                <button class="time-option" data-value="8:30 PM">8:30 PM</button>
+                <button class="time-option" data-value="9:00 PM">9:00 PM</button>
+                <button class="time-option" data-value="9:30 PM">9:30 PM</button>
+            </div>
+            <input type="hidden" id="selectedTime" name="selectedTime" value="6:30 PM">
+        </div>
+
+        <!-- Group Size Selection (Hidden for now) -->
+        <div class="section-block" style="display: none;">
+            <h2 class="section-title">How many people?</h2>
+            <div class="group-size-options">
+                <div class="group-size-option" data-value="1-on-1">
+                    <i class="fas fa-user-friends"></i>
+                    <div>1 vs 1</div>
+                </div>
+                <div class="group-size-option active" data-value="small-group">
+                    <i class="fas fa-users"></i>
+                    <div>2~3</div>
+                </div>
+                <div class="group-size-option" data-value="large-group">
+                    <i class="fas fa-user-plus"></i>
+                    <div>More than 3</div>
+                </div>
+            </div>
+            <input type="hidden" id="selectedGroupSize" name="selectedGroupSize" value="small-group">
+        </div>
+
+        <!-- Next Button -->
+        <button class="modern-cta-button" id="nextButton">Next: Choose Location</button>
+    </div>
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="showcase.html"><i class="fas fa-home"></i>Home</a>
+        <a href="showcase.html"><i class="fas fa-search"></i>Explore</a>
+        <a href="availability.html" class="active"><i class="fas fa-calendar-check"></i>Availability</a>
+        <a href="showcase.html"><i class="fas fa-bell"></i>Alerts</a>
+        <a href="showcase.html"><i class="fas fa-user"></i>Profile</a>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Date item selection
-            const dateItems = document.querySelectorAll('.date-item');
-            dateItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    dateItems.forEach(i => i.classList.remove('active'));
+            // Date selection
+            const dateCards = document.querySelectorAll('.date-card');
+            const selectedDateInput = document.getElementById('selectedDate');
+            
+            dateCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    dateCards.forEach(c => c.classList.remove('active'));
                     this.classList.add('active');
+                    selectedDateInput.value = this.dataset.value;
                 });
             });
 
             // Meal type selection
-            const mealButtons = document.querySelectorAll('.primary-meal-options .btn, .secondary-meal-options .btn');
-            const mealTypeValue = document.getElementById('mealTypeValue');
+            const mealButtons = document.querySelectorAll('.meal-option-button');
+            const selectedMealInput = document.getElementById('selectedMeal');
             
             mealButtons.forEach(button => {
                 button.addEventListener('click', function() {
-                    // Remove active class from all options
-                    mealButtons.forEach(b => {
-                        b.classList.remove('btn-primary');
-                        b.classList.add('btn-outline');
-                    });
+                    // If it's a primary button, only deactivate other primary buttons
+                    if (!this.classList.contains('secondary')) {
+                        document.querySelectorAll('.meal-option-button:not(.secondary)').forEach(b => b.classList.remove('active'));
+                    } else {
+                        // If it's a secondary button, only deactivate other secondary buttons
+                        document.querySelectorAll('.meal-option-button.secondary').forEach(b => b.classList.remove('active'));
+                    }
                     
-                    // Add active class to clicked option
-                    this.classList.remove('btn-outline');
-                    this.classList.add('btn-primary');
-                    
-                    // Update hidden value
-                    mealTypeValue.value = this.dataset.value;
+                    this.classList.add('active');
+                    selectedMealInput.value = this.dataset.value;
                 });
             });
 
             // Time selection
-            const timeItems = document.querySelectorAll('.time-item');
-            timeItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    timeItems.forEach(i => i.classList.remove('active'));
+            const timeOptions = document.querySelectorAll('.time-option');
+            const selectedTimeInput = document.getElementById('selectedTime');
+            
+            timeOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    timeOptions.forEach(o => o.classList.remove('active'));
                     this.classList.add('active');
+                    selectedTimeInput.value = this.dataset.value;
                 });
+            });
+
+            // Group size selection
+            const groupSizeOptions = document.querySelectorAll('.group-size-option');
+            const selectedGroupSizeInput = document.getElementById('selectedGroupSize');
+            
+            groupSizeOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    groupSizeOptions.forEach(o => o.classList.remove('active'));
+                    this.classList.add('active');
+                    selectedGroupSizeInput.value = this.dataset.value;
+                });
+            });
+
+            // Next button
+            document.getElementById('nextButton').addEventListener('click', function() {
+                window.location.href = 'location-selection.html';
             });
         });
     </script>

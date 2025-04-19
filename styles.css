@@ -195,7 +195,7 @@ p {
     cursor: pointer;
     user-select: none;
     padding: 0.75rem 1.5rem;
-    border-radius: 10px;
+    border-radius: 12px;
     transition: all 0.3s ease;
     text-decoration: none;
     border: none;
@@ -725,7 +725,7 @@ select.form-control {
 
 .pill {
     padding: 8px 15px;
-    border-radius: 20px;
+    border-radius: 12px;
     display: inline-block;
     margin-right: 8px;
     margin-bottom: 8px;
@@ -779,7 +779,7 @@ select.form-control {
 .filter-item {
     padding: 8px 15px;
     background-color: white;
-    border-radius: 20px;
+    border-radius: 12px;
     margin-right: 10px;
     white-space: nowrap;
     font-size: 0.9rem;
@@ -1478,6 +1478,7 @@ select.form-control {
     font-weight: 600;
     padding: 15px 10px;
     text-align: center;
+    border-radius: 12px;
 }
 
 .meal-option-secondary {
@@ -1486,6 +1487,7 @@ select.form-control {
     padding: 10px 8px;
     text-align: center;
     color: var(--gray-600);
+    border-radius: 12px;
 }
 
 /* Filter Container */
@@ -1534,96 +1536,89 @@ select.form-control {
     color: var(--gray-600);
 }
 
-/* Review Page Styles */
-.review-summary-card {
-    background-color: rgba(138, 43, 226, 0.1);
-    border-radius: 12px;
-    padding: 15px;
-    margin-bottom: 20px;
-    text-align: center;
+/* Updated Review Page Styles */
+.review-section-card {
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 18px;
+    overflow: hidden;
+    padding: 20px;
 }
 
-.review-title {
-    color: var(--primary-color);
-    font-weight: 600;
-    font-size: 1.1rem;
+.review-section-header {
     display: flex;
     align-items: center;
-    justify-content: center;
+    margin-bottom: 16px;
+    position: relative;
 }
 
-.review-title i {
-    margin-right: 8px;
-    color: var(--success-color);
-}
-
-.review-card {
-    margin-bottom: 20px;
-}
-
-.review-card-header {
-    display: flex;
-    align-items: center;
-    padding: 15px;
-    border-bottom: 1px solid var(--gray-200);
-}
-
-.review-step-number {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: var(--primary-color);
+.review-step-indicator {
+    width: 28px;
+    height: 28px;
+    background-color: #8a4de9;
     color: white;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 600;
-    margin-right: 10px;
-}
-
-.review-card-header h3 {
-    flex: 1;
-    margin: 0;
-}
-
-.review-edit-link {
-    color: var(--primary-color);
-    text-decoration: none;
+    font-weight: 500;
+    margin-right: 12px;
     font-size: 0.9rem;
 }
 
-.review-edit-link i {
-    margin-right: 4px;
+.review-section-header h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+    color: #333;
 }
 
-.review-item {
+.review-edit-link {
+    position: absolute;
+    right: 0;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.review-edit-link i {
+    font-size: 1rem;
+}
+
+.review-section-body {
+    padding-left: 40px;
+}
+
+.review-detail-item {
     display: flex;
     margin-bottom: 12px;
 }
 
-.review-item:last-child {
+.review-detail-item:last-child {
     margin-bottom: 0;
 }
 
-.review-item-label {
-    width: 40%;
-    font-weight: 600;
-    color: var(--gray-600);
+.review-detail-label {
+    color: #666;
+    width: 35%;
+    font-size: 0.95rem;
 }
 
-.review-item-value {
-    width: 60%;
+.review-detail-value {
+    color: #333;
     font-weight: 500;
+    width: 65%;
+    font-size: 0.95rem;
+}
+
+.review-detail-value i {
+    color: var(--primary-color);
+    margin-right: 6px;
 }
 
 .review-actions {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-.review-actions .btn {
-    flex: 1;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 /* Confirmation Page Styles */
@@ -1711,4 +1706,213 @@ select.form-control {
 .confirmation-info p {
     font-size: 0.9rem;
     color: var(--gray-600);
+}
+
+/* Modern UI Styles for Availability Page */
+
+.simple-header {
+    padding: 15px 0;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.simple-back-button {
+    font-size: 24px;
+    color: #333;
+    text-decoration: none;
+    position: absolute;
+    left: 0;
+    top: 20px;
+}
+
+.page-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin: 30px 0 20px;
+    padding-right: 40px;
+}
+
+.modern-progress-steps {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 40px 0;
+    position: relative;
+    padding: 0 30px;
+}
+
+.progress-step-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+}
+
+.step-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #e2e2e2;
+    color: #999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.progress-step-item.active .step-circle {
+    background-color: #8a4de9;
+    color: white;
+}
+
+.step-label {
+    font-size: 14px;
+    color: #999;
+    font-weight: 500;
+}
+
+.progress-step-item.active .step-label {
+    color: #8a4de9;
+    font-weight: 600;
+}
+
+.progress-line {
+    height: 2px;
+    background-color: #e2e2e2;
+    flex-grow: 1;
+    z-index: 1;
+}
+
+.section-block {
+    margin-bottom: 30px;
+}
+
+.section-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.date-card-container {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.date-card-container::-webkit-scrollbar {
+    display: none;
+}
+
+.date-card {
+    min-width: 80px;
+    height: 100px;
+    border-radius: 15px;
+    background-color: white;
+    border: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.date-card.active {
+    background-color: #8a4de9;
+    color: white;
+}
+
+.date-card-day {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.date-card-date {
+    font-size: 14px;
+}
+
+.meal-primary-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.meal-secondary-row {
+    display: flex;
+    gap: 10px;
+}
+
+.meal-option-button {
+    flex: 1;
+    height: 55px;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    background-color: white;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.meal-option-button.active {
+    background-color: #8a4de9;
+    color: white;
+    border-color: #8a4de9;
+}
+
+.meal-option-button.secondary {
+    height: 45px;
+    background-color: #f5f5f5;
+    font-size: 14px;
+    color: #666;
+    border-radius: 12px;
+}
+
+.time-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.time-option {
+    height: 45px;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    background-color: white;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.time-option.active {
+    background-color: #8a4de9;
+    color: white;
+    border-color: #8a4de9;
+}
+
+.modern-cta-button {
+    width: 100%;
+    height: 60px;
+    border-radius: 30px;
+    border: none;
+    background-color: #8a4de9;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    transition: all 0.2s ease;
+}
+
+.modern-cta-button:hover {
+    background-color: #7a3fd9;
 } 
