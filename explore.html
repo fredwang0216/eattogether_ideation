@@ -70,6 +70,7 @@
                     <div class="filter-item">Breakfast</div>
                     <div class="filter-item">Brunch</div>
                     <div class="filter-item">Afternoon Tea</div>
+                    <div class="filter-item">Spanish</div>
                 </div>
             </div>
 
@@ -92,19 +93,19 @@
                 <!-- Selected Location Preview -->
                 <div class="card">
                     <div class="card-header">
-                        <h3>Trattoria Italiana</h3>
-                        <span class="badge badge-primary">Dinner • 7:30 PM</span>
+                        <h3>UNA</h3>
+                        <span class="badge badge-primary">Dinner • 7:00 PM</span>
                     </div>
                     <div class="card-body">
                         <div class="flex justify-between items-center mb-10">
                             <div>
-                                <div class="mb-5">Italian • 0.8 mi away • $$$</div>
+                                <div class="mb-5">Spanish • 1.4 mi away • $$$$</div>
                                 <div class="restaurant-rating">
-                                    <i class="fas fa-star"></i> 4.8 (240+ reviews)
+                                    <i class="fas fa-star"></i> 4.9 (310+ reviews)
                                 </div>
                             </div>
                             <div class="user-count-badge">
-                                <i class="fas fa-users"></i> 3 people
+                                <i class="fas fa-users"></i> 2 people
                             </div>
                         </div>
                         <button class="btn btn-primary w-full">Join this Table</button>
@@ -158,6 +159,32 @@
                     </div>
                 </div>
 
+                <!-- Meal Listing UNA - NEW -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>UNA</h3>
+                        <span class="badge badge-primary">Dinner • 7:00 PM</span>
+                        <span class="badge" style="background-color: #f0b400;">Michelin Guide</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="flex justify-between items-center mb-10">
+                            <div>
+                                <div class="mb-5">Spanish • 1.4 mi away • $$$$</div>
+                                <div class="restaurant-rating">
+                                    <i class="fas fa-star"></i> 4.9 (310+ reviews)
+                                </div>
+                                <div class="mt-5" style="font-size: 0.9rem; color: #666;">
+                                    <i class="fas fa-info-circle"></i> Spanish gastronomy at The Alkaff Mansion
+                                </div>
+                            </div>
+                            <div class="user-count-badge">
+                                <i class="fas fa-users"></i> 2 people
+                            </div>
+                        </div>
+                        <button class="btn btn-primary w-full">Join this Table</button>
+                    </div>
+                </div>
+
                 <!-- Meal Listing 3 -->
                 <div class="card">
                     <div class="card-header">
@@ -197,9 +224,9 @@
                 <i class="fas fa-compass"></i>
                 <span>Explore</span>
             </a>
-            <a href="availability.html" class="nav-item">
-                <i class="fas fa-calendar-alt"></i>
-                <span>Availability</span>
+            <a href="availability.html" class="nav-item eat-together">
+                <i class="fas fa-utensils"></i>
+                <span>Eat Together</span>
             </a>
             <a href="notifications.html" class="nav-item">
                 <i class="fas fa-bell"></i>
@@ -284,7 +311,7 @@
                 const map = new mapboxgl.Map({
                     container: 'map',
                     style: 'mapbox://styles/mapbox/light-v10',
-                    center: [-122.4194, 37.7749], // Example: San Francisco
+                    center: [103.8198, 1.3521], // Singapore coordinates
                     zoom: 13
                 });
             } catch (e) {

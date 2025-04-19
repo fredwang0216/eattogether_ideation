@@ -53,9 +53,10 @@ This updated version features a streamlined 3-step meal planning process and enh
 - Option to save preferences as defaults
 
 ### Restaurant Selection Page (restaurant-selection.html)
-- Map view showing nearby restaurants
+- Map view showing nearby restaurants in Singapore
 - List view with restaurant details
 - Filters for cuisine type, distance, and price
+- Featured restaurant: UNA, a Michelin Guide Spanish restaurant at The Alkaff Mansion
 
 ### Profile Page (profile.html)
 - Personal information

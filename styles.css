@@ -164,6 +164,29 @@ p {
     margin-bottom: 5px;
 }
 
+/* Eat Together Nav Item */
+.nav-item.eat-together {
+    font-size: 1.1rem;
+    font-weight: 600;
+    transform: scale(1.1);
+}
+
+.nav-item.eat-together i {
+    font-size: 1.3em;
+    color: var(--primary-color);
+}
+
+.navbar a.eat-together {
+    font-size: 1.1rem;
+    font-weight: 600;
+    transform: scale(1.1);
+}
+
+.navbar a.eat-together i {
+    font-size: 1.3em;
+    color: var(--primary-color);
+}
+
 /* Header */
 .header {
     padding: 20px 15px;
@@ -938,11 +961,11 @@ select.form-control {
     content: '';
     position: absolute;
     bottom: -1px;
-    left: 0;
-    width: 100%;
+    left: 25%;
+    width: 50%;
     height: 3px;
     background-color: var(--primary-color);
-    border-radius: 3px 3px 0 0;
+    border-radius: 3px;
 }
 
 /* Empty State */
@@ -1915,4 +1938,95 @@ select.form-control {
 
 .modern-cta-button:hover {
     background-color: #7a3fd9;
+}
+
+.restaurant-badge {
+    display: inline-block;
+    margin-top: 5px;
+    padding: 2px 6px;
+    background-color: #f0b400;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 4px;
+}
+
+/* Showcase Styles */
+.showcase-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    padding: 20px 0;
+}
+
+.showcase-item {
+    border-radius: 15px;
+    background-color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.showcase-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.showcase-preview {
+    height: 750px; /* This height will be overridden by JavaScript */
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.showcase-preview iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    transform: scale(0.7);
+    transform-origin: top center;
+    transition: opacity 0.3s ease;
+    opacity: 1; /* Changed from 0 to 1 to make iframes visible */
+    pointer-events: none; /* Prevents iframe interaction */
+}
+
+.showcase-preview::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+    z-index: 10; /* Ensures the overlay is above the iframe */
+}
+
+.showcase-info {
+    padding: 20px;
+}
+
+.showcase-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.showcase-description {
+    color: var(--gray-600);
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+}
+
+.showcase-link {
+    color: var(--primary-color);
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+}
+
+.showcase-link i {
+    margin-left: 5px;
 } 

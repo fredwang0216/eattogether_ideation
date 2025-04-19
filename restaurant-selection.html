@@ -49,6 +49,8 @@
                 <div class="filter-item">Italian</div>
                 <div class="filter-item">Japanese</div>
                 <div class="filter-item">Mexican</div>
+                <div class="filter-item">Spanish</div>
+                <div class="filter-item">French</div>
                 <div class="filter-item">Price: $$$</div>
             </div>
 
@@ -64,6 +66,9 @@
                         <i class="fas fa-map-marker-alt"></i>
                     </div>
                     <div class="map-pin" style="top: 210px; left: 100px;">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="map-pin" style="top: 155px; left: 180px;">
                         <i class="fas fa-map-marker-alt"></i>
                     </div>
                 </div>
@@ -100,6 +105,23 @@
                         <div class="restaurant-actions">
                             <div class="checkbox checked">
                                 <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- UNA Restaurant - NEW -->
+                    <div class="restaurant-item">
+                        <img src="https://images.unsplash.com/photo-1515443961218-a51367888e4b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="UNA Restaurant" class="restaurant-image">
+                        <div class="restaurant-info">
+                            <div class="restaurant-name">UNA</div>
+                            <div class="restaurant-details">Spanish • 1.4 mi away • $$$$</div>
+                            <div class="restaurant-rating">
+                                <i class="fas fa-star"></i> 4.9 (310+ reviews)
+                            </div>
+                            <div class="restaurant-badge">Michelin Guide</div>
+                        </div>
+                        <div class="restaurant-actions">
+                            <div class="checkbox">
                             </div>
                         </div>
                     </div>
@@ -168,9 +190,9 @@
                 <i class="fas fa-compass"></i>
                 <span>Explore</span>
             </a>
-            <a href="availability.html" class="nav-item active">
-                <i class="fas fa-calendar-alt"></i>
-                <span>Availability</span>
+            <a href="availability.html" class="nav-item active eat-together">
+                <i class="fas fa-utensils"></i>
+                <span>Eat Together</span>
             </a>
             <a href="notifications.html" class="nav-item">
                 <i class="fas fa-bell"></i>
@@ -229,7 +251,7 @@
                 const map = new mapboxgl.Map({
                     container: 'map',
                     style: 'mapbox://styles/mapbox/light-v10',
-                    center: [-122.4194, 37.7749], // Example: San Francisco
+                    center: [103.8198, 1.3521], // Singapore coordinates
                     zoom: 13
                 });
             } catch (e) {
