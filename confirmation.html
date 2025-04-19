@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EatTogether - Confirmed!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Success!</h1>
+        </div>
+
+        <div class="content-container">
+            <!-- Success Message -->
+            <div class="confirmation-card">
+                <div class="confirmation-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2>Your meal is confirmed!</h2>
+                <p>We'll notify you when we find people to eat together with.</p>
+                
+                <!-- Meal Summary -->
+                <div class="meal-summary">
+                    <div class="meal-summary-item">
+                        <i class="fas fa-calendar"></i>
+                        <span>Wednesday, Oct 13 • 6:30 PM</span>
+                    </div>
+                    <div class="meal-summary-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>San Francisco Downtown</span>
+                    </div>
+                    <div class="meal-summary-item">
+                        <i class="fas fa-utensils"></i>
+                        <span>Dinner • Trattoria Italiana</span>
+                    </div>
+                    <div class="meal-summary-item">
+                        <i class="fas fa-users"></i>
+                        <span>Group of 3+ people</span>
+                    </div>
+                </div>
+                
+                <!-- Actions -->
+                <div class="confirmation-actions">
+                    <a href="home.html" class="btn btn-primary btn-large">Back to Home</a>
+                </div>
+                
+                <!-- Additional Info -->
+                <div class="confirmation-info">
+                    <p>A notification will be sent when matches are found. You can check the status in your notifications.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <div class="nav-bar">
+            <a href="home.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="explore.html" class="nav-item">
+                <i class="fas fa-compass"></i>
+                <span>Explore</span>
+            </a>
+            <a href="availability.html" class="nav-item active">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Availability</span>
+            </a>
+            <a href="notifications.html" class="nav-item">
+                <i class="fas fa-bell"></i>
+                <span>Alerts</span>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // For a real app, we would load the meal details from localStorage or session
+            // We would also start any needed processes like sending the meal request to the server
+            
+            // Simulate confetti effect for celebration
+            setTimeout(() => {
+                // In a real app, this would be a proper confetti animation
+                console.log("Celebration animation would play here!");
+            }, 500);
+        });
+    </script>
+</body>
+</html> 

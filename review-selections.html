@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EatTogether - Review Selections</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header-with-back">
+            <a href="matching-preferences.html" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h1>Review Your Selections</h1>
+        </div>
+
+        <div class="content-container">
+            <!-- Review Summary -->
+            <div class="review-summary-card">
+                <div class="review-title">
+                    <i class="fas fa-check-circle"></i> Your meal plan is ready for confirmation
+                </div>
+            </div>
+
+            <!-- When Section - Step 1 -->
+            <div class="card review-card">
+                <div class="review-card-header">
+                    <div class="review-step-number">1</div>
+                    <h3>When</h3>
+                    <a href="availability.html" class="review-edit-link">
+                        <i class="fas fa-pencil-alt"></i> Edit
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="review-item">
+                        <div class="review-item-label">Date:</div>
+                        <div class="review-item-value">Wednesday, Oct 13</div>
+                    </div>
+                    <div class="review-item">
+                        <div class="review-item-label">Meal:</div>
+                        <div class="review-item-value">Dinner</div>
+                    </div>
+                    <div class="review-item">
+                        <div class="review-item-label">Time:</div>
+                        <div class="review-item-value">6:30 PM</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Where Section - Step 2 -->
+            <div class="card review-card">
+                <div class="review-card-header">
+                    <div class="review-step-number">2</div>
+                    <h3>Where</h3>
+                    <a href="location-selection.html" class="review-edit-link">
+                        <i class="fas fa-pencil-alt"></i> Edit
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="review-item">
+                        <div class="review-item-label">Location:</div>
+                        <div class="review-item-value">San Francisco Downtown</div>
+                    </div>
+                    <div class="review-item">
+                        <div class="review-item-label">Address:</div>
+                        <div class="review-item-value">Market Street, SF, CA 94103</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Who Section - Step 3 -->
+            <div class="card review-card">
+                <div class="review-card-header">
+                    <div class="review-step-number">3</div>
+                    <h3>Who</h3>
+                    <a href="matching-preferences.html" class="review-edit-link">
+                        <i class="fas fa-pencil-alt"></i> Edit
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="review-item">
+                        <div class="review-item-label">Group size:</div>
+                        <div class="review-item-value">More than 3</div>
+                    </div>
+                    <div class="review-item">
+                        <div class="review-item-label">Gender preference:</div>
+                        <div class="review-item-value">Any gender</div>
+                    </div>
+                    <div class="review-item">
+                        <div class="review-item-label">Age range:</div>
+                        <div class="review-item-value">18-55+ years</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="review-actions">
+                <a href="confirmation.html" class="btn btn-primary btn-large">Eat Together</a>
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <div class="nav-bar">
+            <a href="home.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="explore.html" class="nav-item">
+                <i class="fas fa-compass"></i>
+                <span>Explore</span>
+            </a>
+            <a href="availability.html" class="nav-item active">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Availability</span>
+            </a>
+            <a href="notifications.html" class="nav-item">
+                <i class="fas fa-bell"></i>
+                <span>Alerts</span>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // This would typically be populated with actual data from previous steps
+            // For a real implementation, you'd use localStorage, session data, or API calls
+            
+            // For the prototype, we're using static data but in a real app
+            // we would retrieve all the user selections from the previous steps
+        });
+    </script>
+</body>
+</html> 
