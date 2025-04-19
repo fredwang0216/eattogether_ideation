@@ -1,146 +1,47 @@
 # EatTogether App Prototype
 
-EatTogether is a mobile application that connects users for shared dining experiences with strangers based on their availability, location preferences, and restaurant choices.
+A high-fidelity prototype that connects strangers for shared dining experiences based on availability, location, and restaurant preferences.
 
-## Prototype Overview
+## Live Demo
 
-This high-fidelity prototype has been created using HTML, CSS, and JavaScript and includes all the core features of the application. It's designed to be fully interactive, providing a realistic user experience.
-
-### Design Update
-This updated version features a streamlined 3-step meal planning process and enhanced matching preferences, allowing users to specify gender and age preferences for better compatibility.
+Visit the interactive prototype: [https://fredwang0216.github.io/eattogether_ideation/](https://fredwang0216.github.io/eattogether_ideation/)
 
 ## Features
 
-1. **3-Step Meal Planning**:
-   - **When**: Set date, choose from primary meal options (lunch, dinner) or secondary options (breakfast, brunch, afternoon tea), and select time
-   - **Where**: Choose from saved locations or explore new areas
-   - **Who**: Define group size, gender preference, and age range
-   
-2. **Default Preference Settings**: Save matching preferences in your profile for quicker meal planning
-   
-3. **Location Management**: Save frequently used locations and search for new ones
-   
-4. **Explore Available Meetups**: Browse existing dining opportunities with other users
+- **3-Step Meal Planning Process**: Simplified user flow
+- **Enhanced Meal Type Options**: Modern UI with rectangular buttons
+- **Improved Restaurant Selection Flow**: Better discovery experience
+- **Responsive Design**: Works on mobile and desktop devices
 
-5. **Get Notifications**: Receive notifications for match requests, confirmed bookings, and other alerts
+## Screens
 
-6. **Manage Profile**: Set dining preferences, matching preferences, and personal information
+1. **Splash Screen**: Initial loading screen with the app logo and tagline
+2. **Home Page**: Main dashboard with quick access buttons and upcoming matches
+3. **Availability Selection**: Choose your preferred date, meal type, and time
+4. **Location Selection**: Select from saved locations or find new places
+5. **Restaurant Selection**: Browse and select restaurants including featured options
+6. **Matching Preferences**: Specify your preferred group size and companion preferences
+7. **Review Selections**: Review all your meal planning selections
+8. **Confirmation**: Final confirmation screen after completing the process
+9. **Explore Page**: Discover available dining options with map and list views
+10. **Notifications**: View and respond to match invitations and messages
+11. **Profile**: Manage personal information and dining preferences
 
-## Pages
+## Getting Started
 
-### Home Page (home.html)
-- Quick access buttons for setting meal availability
-- Overview of the 3-step process
-- Display of upcoming matches
-- Recent notifications
-- User representation via icons instead of profile pictures
+To explore the prototype:
+1. Click the link above to access the live demo
+2. Navigate through the showcase page to view all screens
+3. Click "Start from the beginning" to experience the full user flow
 
-### Availability Page (availability.html) - Step 1: When
-- Progress indicator showing the 3-step process
-- Date picker for selecting available dates
-- Meal type selection (breakfast, lunch, dinner)
-- Time selection
+## Development
 
-### Location Selection Page (location-selection.html) - Step 2: Where
-- Map view showing nearby locations
-- Saved locations list
-- Search functionality for finding new locations
+This prototype is built with HTML, CSS, and JavaScript. To run it locally:
 
-### Matching Preferences Page (matching-preferences.html) - Step 3: Who
-- Group size preference
-- Gender preference options
-- Age range selection using dual sliders
-- Option to save preferences as defaults
+1. Clone the repository: `git clone https://github.com/fredwang0216/eattogether_ideation.git`
+2. Open `showcase.html` in your browser to view all screens
+3. Navigate through the different HTML files to explore each screen individually
 
-### Restaurant Selection Page (restaurant-selection.html)
-- Map view showing nearby restaurants in Singapore
-- List view with restaurant details
-- Filters for cuisine type, distance, and price
-- Featured restaurant: UNA, a Michelin Guide Spanish restaurant at The Alkaff Mansion
+## Feedback
 
-### Profile Page (profile.html)
-- Personal information
-- Matching preferences section (group size, gender, age range)
-- Dining preferences (cuisine types, dietary restrictions)
-- App settings and preferences
-- Generic user icon instead of profile picture
-
-### Notifications Page (notifications.html)
-- Match notifications with details
-- Action buttons to accept/decline invitations
-- Message notifications and system alerts
-- User icons instead of avatars for privacy
-
-### Explore Page (explore.html)
-- Map view showing available dining options
-- List view of all available meals
-- Filtering by date and meal type
-- Join functionality for existing tables
-- User counts instead of profile pictures
-
-## How to Use the Prototype
-
-1. **Access the Prototype**: Open `index.html` in a web browser to start.
-
-2. **Navigation**: Use the bottom navigation bar to move between main sections of the app:
-   - Home
-   - Explore
-   - Availability
-   - Notifications
-   - Profile
-
-3. **Plan a Meal in 3 Steps**:
-   - **Step 1**: Select date, meal type (with lunch and dinner as primary options), and time
-   - **Step 2**: Choose a location (saved or new)
-   - **Step 3**: Set matching preferences (group size, gender, age range)
-   - Then select restaurants and finalize
-
-4. **Save Default Preferences**: Configure default matching preferences in the profile section to streamline future meal planning
-
-5. **Explore Available Meals**:
-   - Browse the Explore page to see dining options
-   - Toggle between map and list views
-   - Filter by date and meal type
-   - Click "Join this Table" to request to join
-
-6. **Manage Notifications**:
-   - Check notifications for matches and requests
-   - Accept or decline match invitations
-   - View message notifications
-
-7. **Edit Profile**:
-   - Update personal information
-   - Set matching preferences (group size, gender, age range)
-   - Configure dining preferences and dietary restrictions
-   - Configure app settings
-
-## Technical Implementation
-
-This prototype uses:
-- HTML5 for structure
-- CSS3 for styling with custom properties for theming
-- JavaScript for interactivity
-- FontAwesome for icons and user representation
-- Mapbox for map functionality
-- Responsive design for mobile-first approach
-
-## iOS App Development
-
-This prototype is ready for iOS development. The structure and UI components follow iOS design guidelines and can be easily translated to Swift or React Native code.
-
-Key considerations for developers:
-- Follow the established color scheme and typography
-- Implement real map functionality using iOS MapKit or Google Maps SDK
-- Connect to a backend for user authentication and data persistence
-- Implement push notifications for real-time alerts
-- Use native iOS UI components for optimal performance
-- Maintain privacy-focused design with no profile pictures
-
-## Future Enhancements
-
-Potential enhancements for the full application:
-- Chat functionality for users before and after meals
-- Integration with restaurant reservation systems
-- User ratings and reviews for restaurants and dining experiences
-- Advanced matching algorithms based on dining preferences and social compatibility
-- Event creation for themed dining experiences
+Your feedback on the user experience and design is welcome! Please open an issue on this repository with any suggestions or comments.
