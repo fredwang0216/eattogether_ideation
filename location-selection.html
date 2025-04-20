@@ -52,13 +52,13 @@
                 <div class="map-container">
                     <div class="map-view" id="map"></div>
                     <!-- Map pins would be dynamically added in a real app -->
-                    <div class="map-pin" style="top: 120px; left: 150px;">
+                    <div class="map-pin" style="top: 140px; left: 180px;">
                         <i class="fas fa-map-marker-alt"></i>
                     </div>
                     <div class="map-pin active" style="top: 180px; left: 220px;">
                         <i class="fas fa-map-marker-alt"></i>
                     </div>
-                    <div class="map-pin" style="top: 210px; left: 100px;">
+                    <div class="map-pin" style="top: 160px; left: 120px;">
                         <i class="fas fa-map-marker-alt"></i>
                     </div>
                 </div>
@@ -70,9 +70,9 @@
                     </div>
                     <div class="card-body">
                         <div class="selected-location">
-                            <div class="location-name">The Alkaff Mansion</div>
-                            <div class="location-address">10 Telok Blangah Green, Singapore 109178</div>
-                            <div class="location-detail">UNA restaurant is located here (Spanish cuisine)</div>
+                            <div class="location-name">Tanjong Pagar Centre</div>
+                            <div class="location-address">7 Wallich Street, Singapore 078884</div>
+                            <div class="location-detail">Multiple dining options available (Japanese, Korean, Chinese cuisine)</div>
                         </div>
                     </div>
                 </div>
@@ -86,11 +86,24 @@
                             <i class="fas fa-building"></i>
                         </div>
                         <div class="location-info">
-                            <div class="location-name">The Alkaff Mansion</div>
-                            <div class="location-address">Telok Blangah, Singapore</div>
+                            <div class="location-name">Tanjong Pagar Centre</div>
+                            <div class="location-address">Wallich Street, Singapore</div>
                         </div>
                         <div class="location-action">
                             <i class="fas fa-check-circle"></i>
+                        </div>
+                    </div>
+
+                    <div class="location-item">
+                        <div class="location-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="location-info">
+                            <div class="location-name">Maxwell Food Centre</div>
+                            <div class="location-address">Tanjong Pagar, Singapore</div>
+                        </div>
+                        <div class="location-action">
+                            <i class="fas fa-circle"></i>
                         </div>
                     </div>
 
@@ -101,19 +114,6 @@
                         <div class="location-info">
                             <div class="location-name">Home</div>
                             <div class="location-address">Orchard Road, Singapore</div>
-                        </div>
-                        <div class="location-action">
-                            <i class="fas fa-circle"></i>
-                        </div>
-                    </div>
-
-                    <div class="location-item">
-                        <div class="location-icon">
-                            <i class="fas fa-briefcase"></i>
-                        </div>
-                        <div class="location-info">
-                            <div class="location-name">Office</div>
-                            <div class="location-address">Marina Bay, Singapore</div>
                         </div>
                         <div class="location-action">
                             <i class="fas fa-circle"></i>
@@ -212,8 +212,41 @@
                 const map = new mapboxgl.Map({
                     container: 'map',
                     style: 'mapbox://styles/mapbox/light-v10',
-                    center: [103.8198, 1.3521], // Singapore coordinates
-                    zoom: 13
+                    center: [103.8461, 1.2748], // Tanjong Pagar coordinates
+                    zoom: 15
+                });
+                
+                // Add markers for Tanjong Pagar area
+                const markers = [
+                    {
+                        coordinates: [103.8461, 1.2748], // Tanjong Pagar Central
+                        color: '#8A2BE2' // Purple
+                    },
+                    {
+                        coordinates: [103.8420, 1.2756], // Tanjong Pagar Plaza area
+                        color: '#8A2BE2' // Purple
+                    },
+                    {
+                        coordinates: [103.8490, 1.2735], // Tanjong Pagar Centre area
+                        color: '#D4AF37' // Gold
+                    }
+                ];
+                
+                // Add markers to the map
+                markers.forEach(marker => {
+                    // Create a DOM element for the marker
+                    const el = document.createElement('div');
+                    el.className = 'mapboxgl-marker';
+                    el.style.backgroundColor = marker.color;
+                    el.style.width = '24px';
+                    el.style.height = '24px';
+                    el.style.borderRadius = '50%';
+                    el.style.border = '2px solid white';
+                    
+                    // Add marker to map
+                    new mapboxgl.Marker(el)
+                        .setLngLat(marker.coordinates)
+                        .addTo(map);
                 });
             } catch (e) {
                 console.log('Map could not be initialized: ', e);
