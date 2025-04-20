@@ -42,8 +42,8 @@
         
         .showcase-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
         }
         
         .showcase-item {
@@ -61,7 +61,7 @@
         
         .showcase-preview {
             position: relative;
-            height: 800px;
+            height: 650px;
             overflow: hidden;
             border-bottom: 1px solid var(--gray-200);
         }
@@ -132,9 +132,19 @@
             margin-bottom: 10px;
         }
         
+        @media (max-width: 1200px) {
+            .showcase-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
         @media (max-width: 768px) {
             .showcase-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .showcase-preview {
+                height: 600px;
             }
         }
 
@@ -149,7 +159,7 @@
             <div class="feature-badge">Updated: 3-Step Meal Planning Process</div>
             <div class="feature-badge">New: Enhanced Meal Type Options with Rectangular Buttons</div>
             <div class="feature-badge">New: Improved Restaurant Selection Flow</div>
-            <div class="feature-badge">New: UNA Spanish Restaurant in Singapore</div>
+            <div class="feature-badge">New: Restaurant Explore with Map & List Views</div>
         </div>
         
         <div class="showcase-grid">
@@ -261,6 +271,18 @@
                 </div>
             </div>
             
+            <!-- Restaurant Explore Page -->
+            <div class="showcase-item" data-page="restaurant-explore">
+                <div class="showcase-preview">
+                    <iframe src="restaurant-explore.html" title="Restaurant Explore Page"></iframe>
+                </div>
+                <div class="showcase-info">
+                    <h2 class="showcase-page-title">Restaurant Explore</h2>
+                    <p class="showcase-description">Discover and select restaurants in Singapore with interactive map and list views.</p>
+                    <a href="restaurant-explore.html" class="showcase-link">View Page</a>
+                </div>
+            </div>
+            
             <!-- Notifications Page -->
             <div class="showcase-item" data-page="notifications">
                 <div class="showcase-preview">
@@ -311,51 +333,52 @@
                 
                 if (pageType && previewContainer && iframe) {
                     // Set up specific container heights
-                    let containerHeight = 800;
+                    let containerHeight = 650;
                     let iframeHeight = 1800;
-                    let scale = 0.5;
+                    let scale = 0.42;
                     
                     switch(pageType) {
                         case 'location-selection':
                         case 'restaurant-selection':
-                            containerHeight = 850;
+                            containerHeight = 650;
                             iframeHeight = 2000;
-                            scale = 0.45;
+                            scale = 0.38;
                             break;
                         case 'matching-preferences':
-                            containerHeight = 820;
+                            containerHeight = 650;
                             iframeHeight = 1900;
-                            scale = 0.48;
+                            scale = 0.40;
                             break;
                         case 'explore':
-                            containerHeight = 850;
+                        case 'restaurant-explore':
+                            containerHeight = 650;
                             iframeHeight = 1900;
-                            scale = 0.47;
+                            scale = 0.40;
                             break;
                         case 'availability':
-                            containerHeight = 820;
+                            containerHeight = 650;
                             iframeHeight = 1800;
-                            scale = 0.49;
+                            scale = 0.42;
                             break;
                         case 'profile':
-                            containerHeight = 850;
+                            containerHeight = 650;
                             iframeHeight = 2100;
-                            scale = 0.44;
+                            scale = 0.37;
                             break;
                         case 'review-selections':
-                            containerHeight = 800;
+                            containerHeight = 650;
                             iframeHeight = 1800;
-                            scale = 0.48;
+                            scale = 0.42;
                             break;
                         case 'confirmation':
-                            containerHeight = 760;
+                            containerHeight = 650;
                             iframeHeight = 1600;
-                            scale = 0.5;
+                            scale = 0.45;
                             break;
                         default:
-                            containerHeight = 780;
+                            containerHeight = 650;
                             iframeHeight = 1700;
-                            scale = 0.5;
+                            scale = 0.42;
                     }
                     
                     // Apply the calculated values
