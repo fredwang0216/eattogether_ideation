@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EatTogether - Explore Restaurants</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+    <style>
+        /* Specific styles for restaurant explore page */
+        .map-container {
+            height: 60vh;
+            position: relative;
+            border-radius: 0;
+            overflow: hidden;
+        }
+        
+        .restaurant-cards-carousel {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            overflow-x: auto;
+            display: flex;
+            padding: 0 15px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            scroll-snap-type: x mandatory;
+            z-index: 10;
+        }
+        
+        .restaurant-cards-carousel::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .restaurant-card {
+            min-width: 280px;
+            background-color: white;
+            border-radius: 15px;
+            padding: 15px;
+            margin-right: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            scroll-snap-align: start;
+        }
+        
+        .restaurant-card-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .restaurant-card-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .restaurant-card-select {
+            width: 24px;
+            height: 24px;
+            background-color: white;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            color: transparent;
+            transition: all 0.2s ease;
+        }
+        
+        .restaurant-card-select.selected {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .restaurant-card-image {
+            width: 100%;
+            height: 140px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        
+        .restaurant-card-details {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .restaurant-card-rating {
+            color: var(--accent-color);
+        }
+        
+        .restaurant-card-address {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+        }
+        
+        .restaurant-card-cuisine {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+        }
+        
+        .restaurant-filter-bar {
+            padding: 15px;
+            background-color: white;
+        }
+        
+        .restaurant-list-container {
+            padding: 0 15px;
+        }
+        
+        .restaurant-list-item {
+            display: flex;
+            padding: 15px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        
+        .restaurant-list-image {
+            width: 70px;
+            height: 70px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+        
+        .restaurant-list-details {
+            flex: 1;
+        }
+        
+        .restaurant-list-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .restaurant-list-address {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+            margin-bottom: 3px;
+        }
+        
+        .restaurant-list-cuisine {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+        }
+        
+        .restaurant-list-select {
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+        }
+        
+        .restaurant-list-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            color: transparent;
+            transition: all 0.2s ease;
+        }
+        
+        .restaurant-list-checkbox.selected {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .floating-button {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: auto;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .floating-button i {
+            margin-right: 8px;
+        }
+        
+        .view-selected-count {
+            background-color: white;
+            color: var(--primary-color);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            right: 0;
+            z-index: 10;
+        }
+        
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .carousel-dot.active {
+            background-color: white;
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-with-back">
+            <a href="home.html" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h1>Explore Restaurants</h1>
+        </div>
+
+        <div class="tab-bar">
+            <div class="tab active" data-tab="map">Map View</div>
+            <div class="tab" data-tab="list">List View</div>
+        </div>
+
+        <div class="content-container">
+            <!-- Map View -->
+            <div class="tab-content" id="map-view">
+                <div class="map-container">
+                    <div class="map-view" id="map"></div>
+                    
+                    <!-- Restaurant Cards Carousel -->
+                    <div class="restaurant-cards-carousel" id="restaurant-carousel">
+                        <!-- Cards will be added dynamically -->
+                    </div>
+                    
+                    <!-- Carousel Dots -->
+                    <div class="carousel-dots" id="carousel-dots">
+                        <!-- Dots will be added dynamically -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- List View -->
+            <div class="tab-content" id="list-view" style="display: none;">
+                <div class="restaurant-filter-bar">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search for restaurants...">
+                    </div>
+                </div>
+                
+                <div class="restaurant-list-container" id="restaurant-list">
+                    <!-- Restaurant list items will be added dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <!-- View Selected Button -->
+        <div class="floating-button" id="view-selected">
+            <i class="fas fa-check-circle"></i>
+            <span>View Selected</span>
+            <div class="view-selected-count">0</div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <div class="nav-bar">
+            <a href="home.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="explore.html" class="nav-item active">
+                <i class="fas fa-compass"></i>
+                <span>Explore</span>
+            </a>
+            <a href="availability.html" class="nav-item eat-together">
+                <i class="fas fa-utensils"></i>
+                <span>Eat Together</span>
+            </a>
+            <a href="notifications.html" class="nav-item">
+                <i class="fas fa-bell"></i>
+                <span>Alerts</span>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sample restaurant data for Tanjong Pagar
+            const restaurants = [
+                {
+                    id: 1,
+                    name: "Burnt Ends",
+                    address: "20 Teck Lim Road, Singapore 088391",
+                    rating: 4.7,
+                    cuisine: "Modern Australian BBQ",
+                    image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80",
+                    coordinates: [103.8419, 1.2803]
+                },
+                {
+                    id: 2,
+                    name: "Kafe Utu",
+                    address: "12 Jiak Chuan Road, Singapore 089265",
+                    rating: 4.5,
+                    cuisine: "African",
+                    image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                    coordinates: [103.8403, 1.2798]
+                },
+                {
+                    id: 3,
+                    name: "Tippling Club",
+                    address: "38 Tanjong Pagar Road, Singapore 088461",
+                    rating: 4.6,
+                    cuisine: "Modern European",
+                    image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                    coordinates: [103.8454, 1.2775]
+                },
+                {
+                    id: 4,
+                    name: "Lolla",
+                    address: "22 Ann Siang Road, Singapore 069702",
+                    rating: 4.4,
+                    cuisine: "Mediterranean",
+                    image: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80",
+                    coordinates: [103.8468, 1.2807]
+                },
+                {
+                    id: 5,
+                    name: "The Feather Blade",
+                    address: "61 Tanjong Pagar Road, Singapore 088482",
+                    rating: 4.5,
+                    cuisine: "Steakhouse",
+                    image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                    coordinates: [103.8434, 1.2767]
+                },
+                {
+                    id: 6,
+                    name: "Ola Cocina Del Mar",
+                    address: "12 Marina Boulevard, Marina Bay Financial Centre Tower 3, #01-06, Singapore 018982",
+                    rating: 4.3,
+                    cuisine: "Spanish",
+                    image: "https://images.unsplash.com/photo-1515669097368-22e68427d265?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                    coordinates: [103.8530, 1.2791]
+                }
+            ];
+            
+            // Track selected restaurants
+            let selectedRestaurants = [];
+            
+            // Initialize Map
+            try {
+                mapboxgl.accessToken = 'pk.eyJ1IjoiZGVzaWduZXIiLCJhIjoiY2xpYmVocGVmMGVxcDNmbzNnYTQ0eTBsNyJ9.Y_azS7In7Xg1ImBxlP_3pw';
+                const map = new mapboxgl.Map({
+                    container: 'map',
+                    style: 'mapbox://styles/mapbox/light-v10',
+                    center: [103.8434, 1.2767], // Tanjong Pagar
+                    zoom: 14
+                });
+
+                // Add markers for each restaurant
+                restaurants.forEach(restaurant => {
+                    const marker = document.createElement('div');
+                    marker.className = 'map-marker';
+                    marker.innerHTML = '<i class="fas fa-map-marker-alt" style="color: var(--primary-color); font-size: 30px;"></i>';
+                    
+                    const markerInstance = new mapboxgl.Marker(marker)
+                        .setLngLat(restaurant.coordinates)
+                        .addTo(map);
+                        
+                    // Store marker reference
+                    restaurant.marker = markerInstance;
+                });
+                
+                // Populate restaurant carousel
+                populateRestaurantCarousel();
+                createCarouselDots();
+                
+                // Populate restaurant list
+                populateRestaurantList();
+                
+                // Initialize carousel scroll
+                initializeCarousel();
+                
+            } catch (e) {
+                console.log('Map could not be initialized: ', e);
+                document.getElementById('map').style.backgroundImage = 'url("https://api.mapbox.com/styles/v1/mapbox/light-v10/static/103.8434,1.2767,14,0/600x400?access_token=pk.eyJ1IjoiZGVzaWduZXIiLCJhIjoiY2xpYmVocGVmMGVxcDNmbzNnYTQ0eTBsNyJ9.Y_azS7In7Xg1ImBxlP_3pw")';
+            }
+            
+            // Tab switching
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Update active tab
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show corresponding content
+                    tabContents.forEach(content => {
+                        content.style.display = 'none';
+                    });
+                    document.getElementById(tabId + '-view').style.display = 'block';
+                });
+            });
+            
+            // Function to populate restaurant carousel
+            function populateRestaurantCarousel() {
+                const carousel = document.getElementById('restaurant-carousel');
+                carousel.innerHTML = '';
+                
+                restaurants.forEach(restaurant => {
+                    const card = document.createElement('div');
+                    card.className = 'restaurant-card';
+                    card.setAttribute('data-id', restaurant.id);
+                    
+                    const isSelected = selectedRestaurants.includes(restaurant.id);
+                    
+                    card.innerHTML = `
+                        <div class="restaurant-card-header">
+                            <div class="restaurant-card-title">${restaurant.name}</div>
+                            <div class="restaurant-card-select ${isSelected ? 'selected' : ''}" data-id="${restaurant.id}">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        <img src="${restaurant.image}" alt="${restaurant.name}" class="restaurant-card-image">
+                        <div class="restaurant-card-details">
+                            <div class="restaurant-card-rating">
+                                <i class="fas fa-star"></i> ${restaurant.rating}
+                            </div>
+                            <div class="restaurant-card-address">${restaurant.address}</div>
+                            <div class="restaurant-card-cuisine">${restaurant.cuisine}</div>
+                        </div>
+                    `;
+                    
+                    carousel.appendChild(card);
+                    
+                    // Add click event to select button
+                    const selectBtn = card.querySelector('.restaurant-card-select');
+                    selectBtn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        toggleRestaurantSelection(this.getAttribute('data-id'));
+                    });
+                });
+            }
+            
+            // Function to create carousel dots
+            function createCarouselDots() {
+                const dotsContainer = document.getElementById('carousel-dots');
+                dotsContainer.innerHTML = '';
+                
+                restaurants.forEach((_, index) => {
+                    const dot = document.createElement('div');
+                    dot.className = 'carousel-dot';
+                    if (index === 0) dot.classList.add('active');
+                    dotsContainer.appendChild(dot);
+                });
+            }
+            
+            // Function to populate restaurant list
+            function populateRestaurantList() {
+                const listContainer = document.getElementById('restaurant-list');
+                listContainer.innerHTML = '';
+                
+                restaurants.forEach(restaurant => {
+                    const item = document.createElement('div');
+                    item.className = 'restaurant-list-item';
+                    
+                    const isSelected = selectedRestaurants.includes(restaurant.id);
+                    
+                    item.innerHTML = `
+                        <img src="${restaurant.image}" alt="${restaurant.name}" class="restaurant-list-image">
+                        <div class="restaurant-list-details">
+                            <div class="restaurant-list-title">${restaurant.name}</div>
+                            <div class="restaurant-list-address">${restaurant.address}</div>
+                            <div class="restaurant-list-cuisine">
+                                <span class="restaurant-card-rating">
+                                    <i class="fas fa-star"></i> ${restaurant.rating}
+                                </span>
+                                · ${restaurant.cuisine}
+                            </div>
+                        </div>
+                        <div class="restaurant-list-select">
+                            <div class="restaurant-list-checkbox ${isSelected ? 'selected' : ''}" data-id="${restaurant.id}">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                    `;
+                    
+                    listContainer.appendChild(item);
+                    
+                    // Add click event to checkbox
+                    const checkbox = item.querySelector('.restaurant-list-checkbox');
+                    checkbox.addEventListener('click', function() {
+                        toggleRestaurantSelection(this.getAttribute('data-id'));
+                    });
+                });
+            }
+            
+            // Function to toggle restaurant selection
+            function toggleRestaurantSelection(id) {
+                id = parseInt(id);
+                
+                if (selectedRestaurants.includes(id)) {
+                    // Remove from selection
+                    selectedRestaurants = selectedRestaurants.filter(resId => resId !== id);
+                } else {
+                    // Add to selection
+                    selectedRestaurants.push(id);
+                }
+                
+                // Update UI
+                updateSelectionUI();
+                
+                // Update the selected count
+                document.querySelector('.view-selected-count').textContent = selectedRestaurants.length;
+            }
+            
+            // Function to update selection UI
+            function updateSelectionUI() {
+                // Update carousel selection buttons
+                document.querySelectorAll('.restaurant-card-select').forEach(btn => {
+                    const id = parseInt(btn.getAttribute('data-id'));
+                    if (selectedRestaurants.includes(id)) {
+                        btn.classList.add('selected');
+                    } else {
+                        btn.classList.remove('selected');
+                    }
+                });
+                
+                // Update list checkboxes
+                document.querySelectorAll('.restaurant-list-checkbox').forEach(checkbox => {
+                    const id = parseInt(checkbox.getAttribute('data-id'));
+                    if (selectedRestaurants.includes(id)) {
+                        checkbox.classList.add('selected');
+                    } else {
+                        checkbox.classList.remove('selected');
+                    }
+                });
+            }
+            
+            // Function to initialize carousel
+            function initializeCarousel() {
+                const carousel = document.getElementById('restaurant-carousel');
+                const dots = document.querySelectorAll('.carousel-dot');
+                
+                carousel.addEventListener('scroll', function() {
+                    const scrollPosition = carousel.scrollLeft;
+                    const cardWidth = carousel.querySelector('.restaurant-card').offsetWidth + 15; // width + margin
+                    
+                    const activeIndex = Math.round(scrollPosition / cardWidth);
+                    
+                    // Update active dot
+                    dots.forEach((dot, index) => {
+                        if (index === activeIndex) {
+                            dot.classList.add('active');
+                        } else {
+                            dot.classList.remove('active');
+                        }
+                    });
+                });
+            }
+            
+            // "View Selected" button
+            document.getElementById('view-selected').addEventListener('click', function() {
+                if (selectedRestaurants.length === 0) {
+                    alert('Please select at least one restaurant');
+                    return;
+                }
+                
+                // Get selected restaurant names
+                const selectedNames = selectedRestaurants.map(id => {
+                    const restaurant = restaurants.find(r => r.id === id);
+                    return restaurant ? restaurant.name : '';
+                }).filter(Boolean);
+                
+                alert(`Selected restaurants: ${selectedNames.join(', ')}`);
+                
+                // In a real app, you'd navigate to the next step or show a modal
+                // window.location.href = 'restaurant-confirmation.html';
+            });
+        });
+    </script>
+</body>
+</html> 
