@@ -6,8 +6,8 @@
     <title>EatTogether - Choose Location</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+    <!-- Replace Mapbox with Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&libraries=places"></script>
     <style>
         /* Additional styles for map */
         .map-container {
@@ -24,13 +24,15 @@
             width: 100%;
             height: 100%;
             background-color: #f0f0f0;
-            background-image: url('https://api.mapbox.com/styles/v1/mapbox/light-v10/static/103.8461,1.2748,14,0/600x300?access_token=pk.eyJ1IjoiZGVzaWduZXIiLCJhIjoiY2xpYmVocGVmMGVxcDNmbzNnYTQ0eTBsNyJ9.Y_azS7In7Xg1ImBxlP_3pw');
-            background-size: cover;
-            background-position: center;
         }
         
-        .mapboxgl-marker {
-            z-index: 10;
+        .google-map-marker {
+            color: #8A2BE2;
+            font-size: 24px;
+        }
+        
+        .google-map-marker.active {
+            color: #D4AF37;
         }
         
         .map-pin {
@@ -245,59 +247,85 @@
                 });
             });
 
-            // Initialize map (would be replaced with actual map in a real implementation)
+            // Initialize map with Google Maps API
             try {
-                mapboxgl.accessToken = 'pk.eyJ1IjoiZGVzaWduZXIiLCJhIjoiY2xpYmVocGVmMGVxcDNmbzNnYTQ0eTBsNyJ9.Y_azS7In7Xg1ImBxlP_3pw';
-                const map = new mapboxgl.Map({
-                    container: 'map',
-                    style: 'mapbox://styles/mapbox/light-v10',
-                    center: [103.8461, 1.2748], // Tanjong Pagar coordinates
-                    zoom: 15
+                // Center coordinates for Tanjong Pagar
+                const tanjongPagarCenter = { lat: 1.2748, lng: 103.8461 };
+                
+                // Create the map
+                const map = new google.maps.Map(document.getElementById('map'), {
+                    center: tanjongPagarCenter,
+                    zoom: 15,
+                    mapId: '8d193001f940fde3',
+                    disableDefaultUI: true,
+                    zoomControl: true
                 });
                 
                 // Add markers for Tanjong Pagar area
-                const markers = [
+                const locations = [
                     {
-                        coordinates: [103.8461, 1.2748], // Tanjong Pagar Central
-                        color: '#8A2BE2' // Purple
+                        position: { lat: 1.2748, lng: 103.8461 }, // Tanjong Pagar Central
+                        color: '#8A2BE2', // Purple
+                        title: 'Tanjong Pagar Central'
                     },
                     {
-                        coordinates: [103.8420, 1.2756], // Tanjong Pagar Plaza area
-                        color: '#8A2BE2' // Purple
+                        position: { lat: 1.2756, lng: 103.8420 }, // Tanjong Pagar Plaza area
+                        color: '#8A2BE2', // Purple
+                        title: 'Tanjong Pagar Plaza'
                     },
                     {
-                        coordinates: [103.8490, 1.2735], // Tanjong Pagar Centre area
-                        color: '#D4AF37' // Gold
+                        position: { lat: 1.2735, lng: 103.8490 }, // Tanjong Pagar Centre area
+                        color: '#D4AF37', // Gold (selected)
+                        title: 'Tanjong Pagar Centre',
+                        isActive: true
                     }
                 ];
                 
-                // Add markers to the map
-                markers.forEach(marker => {
-                    // Create a DOM element for the marker
-                    const el = document.createElement('div');
-                    el.className = 'mapboxgl-marker';
-                    el.style.backgroundColor = marker.color;
-                    el.style.width = '24px';
-                    el.style.height = '24px';
-                    el.style.borderRadius = '50%';
-                    el.style.border = '2px solid white';
+                // Create custom marker icons using SVG
+                locations.forEach(location => {
+                    const markerSVG = `
+                        <svg viewBox="0 0 24 24" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="${location.color}" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                    `;
+
+                    const marker = new google.maps.Marker({
+                        position: location.position,
+                        map: map,
+                        title: location.title,
+                        icon: {
+                            url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(markerSVG),
+                            scaledSize: new google.maps.Size(36, 36),
+                            anchor: new google.maps.Point(18, 36),
+                        },
+                        zIndex: location.isActive ? 2 : 1
+                    });
                     
-                    // Add marker to map
-                    new mapboxgl.Marker(el)
-                        .setLngLat(marker.coordinates)
-                        .addTo(map);
-                });
-                
-                // Wait for map to load and hide fallback pins
-                map.on('load', function() {
-                    document.querySelectorAll('.map-pin').forEach(pin => {
-                        pin.style.display = 'none';
+                    // Add click event to marker
+                    marker.addListener('click', () => {
+                        // Update selected location card
+                        document.querySelector('.location-name').textContent = location.title;
+                        document.querySelector('.location-address').textContent = 
+                            location.title === 'Tanjong Pagar Centre' ? 
+                            '7 Wallich Street, Singapore 078884' : 
+                            'Tanjong Pagar Area, Singapore';
                     });
                 });
+                
+                // Hide fallback pins once map is loaded
+                document.querySelectorAll('.map-pin').forEach(pin => {
+                    pin.style.display = 'none';
+                });
+                
             } catch (e) {
                 console.log('Map could not be initialized: ', e);
                 // Fallback for prototype when map can't be initialized
-                document.getElementById('map').style.backgroundImage = 'url("https://api.mapbox.com/styles/v1/mapbox/light-v10/static/103.8461,1.2748,14,0/600x300?access_token=pk.eyJ1IjoiZGVzaWduZXIiLCJhIjoiY2xpYmVocGVmMGVxcDNmbzNnYTQ0eTBsNyJ9.Y_azS7In7Xg1ImBxlP_3pw")';
+                document.getElementById('map').innerHTML = `
+                    <div style="display: flex; justify-content: center; align-items: center; height: 100%; background-color: #f0f0f0;">
+                        <i class="fas fa-map-marked-alt" style="font-size: 48px; color: #ccc;"></i>
+                        <p style="margin-left: 10px; color: #999;">Map of Tanjong Pagar Area</p>
+                    </div>
+                `;
             }
         });
     </script>

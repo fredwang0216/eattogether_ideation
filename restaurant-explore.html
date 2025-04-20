@@ -6,8 +6,7 @@
     <title>EatTogether - Explore Restaurants</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&libraries=places"></script>
     <style>
         /* Specific styles for restaurant explore page */
         .map-container {
@@ -371,28 +370,75 @@
             // Track selected restaurants
             let selectedRestaurants = [];
             
-            // Initialize Map
+            // Initialize Map with Google Maps API
             try {
-                mapboxgl.accessToken = 'pk.eyJ1IjoiZGVzaWduZXIiLCJhIjoiY2xpYmVocGVmMGVxcDNmbzNnYTQ0eTBsNyJ9.Y_azS7In7Xg1ImBxlP_3pw';
-                const map = new mapboxgl.Map({
-                    container: 'map',
-                    style: 'mapbox://styles/mapbox/light-v10',
-                    center: [103.8434, 1.2767], // Tanjong Pagar
-                    zoom: 14
+                // Center coordinates for Tanjong Pagar
+                const tanjongPagarCenter = { lat: 1.2767, lng: 103.8434 };
+                
+                // Create the map
+                const map = new google.maps.Map(document.getElementById('map'), {
+                    center: tanjongPagarCenter,
+                    zoom: 14,
+                    mapId: '8d193001f940fde3',
+                    disableDefaultUI: true,
+                    zoomControl: true
                 });
 
+                // Create info window for showing restaurant name when marker is clicked
+                const infoWindow = new google.maps.InfoWindow();
+                
                 // Add markers for each restaurant
                 restaurants.forEach(restaurant => {
-                    const marker = document.createElement('div');
-                    marker.className = 'map-marker';
-                    marker.innerHTML = '<i class="fas fa-map-marker-alt" style="color: var(--primary-color); font-size: 30px;"></i>';
+                    // Create custom marker icon using SVG
+                    const markerSVG = `
+                        <svg viewBox="0 0 24 24" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="var(--primary-color)" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                    `;
                     
-                    const markerInstance = new mapboxgl.Marker(marker)
-                        .setLngLat(restaurant.coordinates)
-                        .addTo(map);
+                    const marker = new google.maps.Marker({
+                        position: { lat: restaurant.coordinates[1], lng: restaurant.coordinates[0] },
+                        map: map,
+                        title: restaurant.name,
+                        icon: {
+                            url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(markerSVG),
+                            scaledSize: new google.maps.Size(36, 36),
+                            anchor: new google.maps.Point(18, 36),
+                        }
+                    });
+                    
+                    // Store marker reference in restaurant object
+                    restaurant.marker = marker;
+                    
+                    // Add click listener to show restaurant info
+                    marker.addListener('click', () => {
+                        // Scroll to this restaurant card in the carousel
+                        const cards = document.querySelectorAll('.restaurant-card');
+                        const cardIndex = restaurants.findIndex(r => r.id === restaurant.id);
                         
-                    // Store marker reference
-                    restaurant.marker = markerInstance;
+                        if (cardIndex >= 0 && cards[cardIndex]) {
+                            const carousel = document.getElementById('restaurant-carousel');
+                            const cardWidth = cards[0].offsetWidth + 15; // width + margin
+                            carousel.scrollTo({
+                                left: cardIndex * cardWidth,
+                                behavior: 'smooth'
+                            });
+                            
+                            // Update carousel dots
+                            document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+                                dot.classList.toggle('active', i === cardIndex);
+                            });
+                            
+                            // Show info window
+                            infoWindow.setContent(`
+                                <div style="padding: 5px;">
+                                    <strong>${restaurant.name}</strong><br>
+                                    ${restaurant.cuisine}
+                                </div>
+                            `);
+                            infoWindow.open(map, marker);
+                        }
+                    });
                 });
                 
                 // Populate restaurant carousel
@@ -407,7 +453,12 @@
                 
             } catch (e) {
                 console.log('Map could not be initialized: ', e);
-                document.getElementById('map').style.backgroundImage = 'url("https://api.mapbox.com/styles/v1/mapbox/light-v10/static/103.8434,1.2767,14,0/600x400?access_token=pk.eyJ1IjoiZGVzaWduZXIiLCJhIjoiY2xpYmVocGVmMGVxcDNmbzNnYTQ0eTBsNyJ9.Y_azS7In7Xg1ImBxlP_3pw")';
+                document.getElementById('map').innerHTML = `
+                    <div style="display: flex; justify-content: center; align-items: center; height: 100%; background-color: #f0f0f0;">
+                        <i class="fas fa-map-marked-alt" style="font-size: 48px; color: #ccc;"></i>
+                        <p style="margin-left: 10px; color: #999;">Map of Tanjong Pagar Area</p>
+                    </div>
+                `;
             }
             
             // Tab switching

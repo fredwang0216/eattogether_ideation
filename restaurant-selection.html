@@ -6,8 +6,7 @@
     <title>EatTogether - Select Restaurants</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&libraries=places"></script>
 </head>
 <body>
     <div class="container">
@@ -245,18 +244,88 @@
                 });
             });
 
-            // Initialize map (would be replaced with actual map in a real implementation)
+            // Initialize map with Google Maps API
             try {
-                mapboxgl.accessToken = 'pk.eyJ1IjoiZGVzaWduZXIiLCJhIjoiY2xpYmVocGVmMGVxcDNmbzNnYTQ0eTBsNyJ9.Y_azS7In7Xg1ImBxlP_3pw';
-                const map = new mapboxgl.Map({
-                    container: 'map',
-                    style: 'mapbox://styles/mapbox/light-v10',
-                    center: [103.8198, 1.3521], // Singapore coordinates
-                    zoom: 13
+                // Center coordinates for Singapore
+                const singaporeCenter = { lat: 1.3521, lng: 103.8198 };
+                
+                // Create the map
+                const map = new google.maps.Map(document.getElementById('map'), {
+                    center: singaporeCenter,
+                    zoom: 13,
+                    mapId: '8d193001f940fde3',
+                    disableDefaultUI: true,
+                    zoomControl: true
+                });
+                
+                // Add restaurant markers
+                const restaurants = [
+                    {
+                        name: "Trattoria Italiana",
+                        position: { lat: 1.3521, lng: 103.8138 },
+                        isSelected: true
+                    },
+                    {
+                        name: "UNA",
+                        position: { lat: 1.3561, lng: 103.8178 },
+                        isSelected: false
+                    },
+                    {
+                        name: "Sakura Sushi",
+                        position: { lat: 1.3481, lng: 103.8258 },
+                        isSelected: false
+                    },
+                    {
+                        name: "El Mariachi",
+                        position: { lat: 1.3541, lng: 103.8218 },
+                        isSelected: false
+                    }
+                ];
+                
+                restaurants.forEach(restaurant => {
+                    // Create custom marker icon using SVG
+                    const color = restaurant.isSelected ? '#D4AF37' : 'var(--primary-color)';
+                    const markerSVG = `
+                        <svg viewBox="0 0 24 24" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="${color}" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                    `;
+                    
+                    const marker = new google.maps.Marker({
+                        position: restaurant.position,
+                        map: map,
+                        title: restaurant.name,
+                        icon: {
+                            url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(markerSVG),
+                            scaledSize: new google.maps.Size(36, 36),
+                            anchor: new google.maps.Point(18, 36),
+                        },
+                        zIndex: restaurant.isSelected ? 2 : 1
+                    });
+                    
+                    // Show info window when clicked
+                    const infoWindow = new google.maps.InfoWindow({
+                        content: `<div style="padding: 5px;"><strong>${restaurant.name}</strong></div>`
+                    });
+                    
+                    marker.addListener('click', () => {
+                        infoWindow.open(map, marker);
+                    });
+                });
+                
+                // Hide fallback pins once map is loaded
+                document.querySelectorAll('.map-pin').forEach(pin => {
+                    pin.style.display = 'none';
                 });
             } catch (e) {
                 console.log('Map could not be initialized: ', e);
                 // Fallback for prototype when map can't be initialized
+                document.getElementById('map').innerHTML = `
+                    <div style="display: flex; justify-content: center; align-items: center; height: 100%; background-color: #f0f0f0;">
+                        <i class="fas fa-map-marked-alt" style="font-size: 48px; color: #ccc;"></i>
+                        <p style="margin-left: 10px; color: #999;">Map of Singapore with Restaurants</p>
+                    </div>
+                `;
             }
         });
     </script>
