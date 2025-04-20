@@ -1480,37 +1480,49 @@ select.form-control {
     color: var(--gray-600);
 }
 
-/* Meal Options Styling */
+/* Meal Options */
 .primary-meal-options {
     display: flex;
     justify-content: space-between;
-    gap: 15px;
     margin-bottom: 15px;
 }
 
 .secondary-meal-options {
     display: flex;
     justify-content: space-between;
-    gap: 10px;
-    margin-bottom: 10px;
+    flex-wrap: wrap;
 }
 
 .meal-option-primary {
     flex: 1;
-    font-size: 1.1rem;
-    font-weight: 600;
-    padding: 15px 10px;
+    margin: 0 5px;
     text-align: center;
+    font-weight: 500;
     border-radius: 12px;
+    transition: all 0.2s ease;
+}
+
+.meal-option-primary.active {
+    background-color: var(--secondary-color);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(138, 43, 226, 0.25);
 }
 
 .meal-option-secondary {
-    flex: 1;
-    font-size: 0.9rem;
-    padding: 10px 8px;
+    flex: 0 0 calc(33.333% - 10px);
+    margin: 5px;
     text-align: center;
-    color: var(--gray-600);
+    color: var(--gray-700);
+    background-color: var(--gray-100);
+    border: 1px solid var(--gray-300);
     border-radius: 12px;
+    transition: all 0.2s ease;
+}
+
+.meal-option-secondary.active {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    background-color: rgba(138, 43, 226, 0.1);
 }
 
 /* Filter Container */
