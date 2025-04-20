@@ -6,6 +6,110 @@
     <title>EatTogether - Connect Over Food</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Style for the info link */
+        .info-link {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 12px;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: all 0.2s ease;
+        }
+        
+        .info-link i {
+            margin-right: 5px;
+            color: var(--primary-color);
+        }
+        
+        .info-link:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        
+        /* How it works modal */
+        .how-it-works-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .how-it-works-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 500px;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.2rem;
+            color: var(--gray-600);
+            cursor: pointer;
+        }
+        
+        .steps-container {
+            margin-top: 20px;
+        }
+        
+        .step-item {
+            display: flex;
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+        
+        .step-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .step-description {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 <body>
     <div class="splash-screen">
@@ -14,9 +118,62 @@
             <p>Never eat alone again</p>
             <div class="loader"></div>
         </div>
+        
+        <a href="#" class="info-link" id="show-info">
+            <i class="fas fa-info-circle"></i> How It Works
+        </a>
+    </div>
+    
+    <!-- How It Works Modal -->
+    <div class="how-it-works-modal" id="howItWorksModal">
+        <div class="modal-content">
+            <i class="fas fa-times close-modal" id="closeModal"></i>
+            <h3>How It Works</h3>
+            
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Set When</div>
+                        <div class="step-description">Choose date, meal type and time</div>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Set Where</div>
+                        <div class="step-description">Select a location</div>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Set Who</div>
+                        <div class="step-description">Define your preferred companions</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
+        // Modal functionality
+        document.getElementById('show-info').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('howItWorksModal').classList.add('active');
+        });
+        
+        document.getElementById('closeModal').addEventListener('click', function() {
+            document.getElementById('howItWorksModal').classList.remove('active');
+        });
+        
+        // Close modal when clicking outside content
+        document.getElementById('howItWorksModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+            }
+        });
+        
         // Simulate app loading
         setTimeout(() => {
             window.location.href = "home.html";

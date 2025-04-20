@@ -51,10 +51,11 @@
                 </div>
             </div>
             
-            <!-- Planning Steps -->
-            <div class="card">
+            <!-- Planning Steps - Hidden by default -->
+            <div class="card" id="how-it-works-card" style="display: none;">
                 <div class="card-header">
                     <h3>How It Works</h3>
+                    <a href="#" class="text-primary" id="hide-how-it-works">Hide</a>
                 </div>
                 <div class="card-body">
                     <div class="steps-container">
@@ -81,6 +82,13 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            
+            <!-- Small link to show How It Works -->
+            <div class="info-link-container">
+                <a href="#" id="show-how-it-works" class="info-link">
+                    <i class="fas fa-info-circle"></i> How It Works
+                </a>
             </div>
 
             <!-- Upcoming Matches -->
@@ -183,7 +191,6 @@
     </div>
 
     <script>
-        // JavaScript for interactions would go here
         document.addEventListener('DOMContentLoaded', function() {
             // Sample code for handling button clicks
             const buttons = document.querySelectorAll('.btn');
@@ -196,7 +203,57 @@
                     }
                 });
             });
+            
+            // How It Works toggle functionality
+            const showHowItWorksBtn = document.getElementById('show-how-it-works');
+            const hideHowItWorksBtn = document.getElementById('hide-how-it-works');
+            const howItWorksCard = document.getElementById('how-it-works-card');
+            
+            showHowItWorksBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                howItWorksCard.style.display = 'block';
+                showHowItWorksBtn.parentElement.style.display = 'none';
+                
+                // Smooth scroll to the card
+                howItWorksCard.scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            hideHowItWorksBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                howItWorksCard.style.display = 'none';
+                showHowItWorksBtn.parentElement.style.display = 'block';
+            });
         });
     </script>
+    
+    <style>
+        /* Style for the info link */
+        .info-link-container {
+            margin: 10px 0 20px;
+            text-align: center;
+        }
+        
+        .info-link {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--gray-600);
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 12px;
+            background-color: var(--gray-100);
+            transition: all 0.2s ease;
+        }
+        
+        .info-link i {
+            margin-right: 5px;
+            color: var(--primary-color);
+        }
+        
+        .info-link:hover {
+            background-color: var(--gray-200);
+            color: var(--dark-color);
+        }
+    </style>
 </body>
 </html> 
