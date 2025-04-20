@@ -8,6 +8,45 @@
     <link rel="stylesheet" href="styles.css">
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+    <style>
+        /* Additional styles for map */
+        .map-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .map-view {
+            width: 100%;
+            height: 100%;
+            background-color: #f0f0f0;
+            background-image: url('https://api.mapbox.com/styles/v1/mapbox/light-v10/static/103.8461,1.2748,14,0/600x300?access_token=pk.eyJ1IjoiZGVzaWduZXIiLCJhIjoiY2xpYmVocGVmMGVxcDNmbzNnYTQ0eTBsNyJ9.Y_azS7In7Xg1ImBxlP_3pw');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .mapboxgl-marker {
+            z-index: 10;
+        }
+        
+        .map-pin {
+            position: absolute;
+            z-index: 5;
+            font-size: 24px;
+            color: #8A2BE2;
+            transform: translate(-50%, -50%);
+            transition: transform 0.2s ease;
+        }
+        
+        .map-pin.active {
+            color: #D4AF37;
+            transform: translate(-50%, -50%) scale(1.2);
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -51,11 +90,11 @@
 
                 <div class="map-container">
                     <div class="map-view" id="map"></div>
-                    <!-- Map pins would be dynamically added in a real app -->
+                    <!-- Fallback map pins positioned on the background image -->
                     <div class="map-pin" style="top: 140px; left: 180px;">
                         <i class="fas fa-map-marker-alt"></i>
                     </div>
-                    <div class="map-pin active" style="top: 180px; left: 220px;">
+                    <div class="map-pin active" style="top: 180px; left: 290px;">
                         <i class="fas fa-map-marker-alt"></i>
                     </div>
                     <div class="map-pin" style="top: 160px; left: 120px;">
@@ -248,9 +287,17 @@
                         .setLngLat(marker.coordinates)
                         .addTo(map);
                 });
+                
+                // Wait for map to load and hide fallback pins
+                map.on('load', function() {
+                    document.querySelectorAll('.map-pin').forEach(pin => {
+                        pin.style.display = 'none';
+                    });
+                });
             } catch (e) {
                 console.log('Map could not be initialized: ', e);
                 // Fallback for prototype when map can't be initialized
+                document.getElementById('map').style.backgroundImage = 'url("https://api.mapbox.com/styles/v1/mapbox/light-v10/static/103.8461,1.2748,14,0/600x300?access_token=pk.eyJ1IjoiZGVzaWduZXIiLCJhIjoiY2xpYmVocGVmMGVxcDNmbzNnYTQ0eTBsNyJ9.Y_azS7In7Xg1ImBxlP_3pw")';
             }
         });
     </script>
