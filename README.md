@@ -12,6 +12,7 @@ Visit the interactive prototype: [https://fredwang0216.github.io/eattogether_ide
 - **Enhanced Meal Type Options**: Modern UI with rectangular buttons
 - **Improved Restaurant Selection Flow**: Better discovery experience
 - **Responsive Design**: Works on mobile and desktop devices
+  
 
 ## Screens
 
